@@ -277,7 +277,7 @@ app.controller('YetAnotherController', ($scope) => {
         <section>
           <h2>Object property on scope</h2>
             <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{app.defaultName}}
+  {{defaultName}}
   <div ng-controller="OtherController">
     {{$parent.defaultName}}
     <div ng-controller="YetAnotherController">
@@ -443,7 +443,7 @@ app.controller('YetAnotherController', () => {
 
   $scope.$watch('myValue', (newValue) => {
     this.myValue = newValue;
-  }.bind(this));
+  });
 });</code></pre>
           <p class="fragment" style="margin-top: 1em;">Super sad :(!</p>
         </section>
