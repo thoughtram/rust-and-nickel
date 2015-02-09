@@ -1,408 +1,539 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+    <title>reveal.js - The HTML Presentation Framework</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/thoughtram.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://ngeurope.org">
+      <img style="opacity: 0.5;"height="50" src="img/ng-nl-logo.png">
+      <span style="color: #888; text-shadow: none; vertical-align: 90%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#ngnlconf</span>
+    </a>
 
-		<div class="reveal">
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/cburgdorf">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@cburgdorf</span>
+    </a>
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
+    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 6em; z-index: 2;" href="http://twitter.com/PascalPrecht">
+      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
+    </a>
+    <div class="reveal">
 
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <!-- <section class="thoughtram-slide" data-background="#f0f0f0"> -->
+        <!--   <img alt="thoughtram brain" src="img/thoughtram-brain-black.png"> -->
+        <!--   <img alt="Extend your memory." src="img/thoughtram-logo-line-with-tag-line.png"> -->
+        <!-- </section> -->
+        <section class="deck-slide">
+          <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/angularjs-shield.png">
+          <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">The Best Angular Yet!</h1>
+          <p style="text-align: center; font-size: 0.8em;">By <a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a> and <a href="http://twitter.com/PascalPrecht">Pascal Precht</a></p>
+          <div style="text-align: center;">
+            <img style="margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/christoph.png">
+            <img style="margin: 0; margin-left: 0.6em; border-radius: 50%; width: 100px;" src="img/pascal.jpeg">
+          </div>
+        </section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+        <section class="about-slide">
+          <div style="margin-top: 3em;">
+          <div class="about">
+            <img width="250" height="250" alt="Christoph" src="img/christoph.png">
+            <h3>Christoph Burgdorf</h3>
+            <h3 style="margin-top: -0.5em;"><a href="http://twitter.com/cburgdorf">@cburgdorf</a></h3>
+          </div>
+          <div class="about">
+            <img width="250" height="250" alt="Pascal" src="img/pascal.jpeg">
+            <h3>Pascal Precht</h3>
+            <h3 style="margin-top: -0.5em;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></h3>
+          </div>
+        </div>
+        </section>
 
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
+        <section>
+          <p style="font-weight: bold;" >There's a lot of stuff happening in Angular 2.0</p>
+        </section>
+        <section class="image-slide">
+          <img src="img/rip-angular-module.png">
+        </section>
+        <section class="image-slide">
+          <img src="img/rip-scope.png">
+        </section>
+        <section class="image-slide">
+          <img src="img/rip-controllers.png">
+        </section>
+        <section class="image-slide">
+          <img src="img/rip-ddo.png">
+        </section>
+        <section class="image-slide">
+          <img src="img/rip-jqlite.png">
+        </section>
 
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
+        <section class="image-slide">
+          <img src="img/rip-all-the-things.png">
+          <img class="fragment" style="position: absolute; right: -1em; transform: rotate(-10deg); top: 5em; border: 10px solid white!important; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8)!important;" src="img/chris-rock-huh-face.gif">
+        </section>
 
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
+        <section class="image-slide">
+          <img class="fragment" style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
+          <img class="fragment" style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble.svg">
+        </section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
+        <section class="image-slide">
+          <h2>So my 1.x code is not gonna work anymore?</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+        <section class="image-slide">
+          <h2>And I should wait until 2.0 is out?</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
 
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+        <section class="image-slide">
+          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
+          <img class="fragment" style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-2.svg">
+        </section>
+        <section class="image-slide">
+          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
+          <img style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-3.svg">
+        </section>
+        <section class="image-slide">
+          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
+          <img style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-4.svg">
+        </section>
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+        <section class="image-slide">
+          <img src="img/angular-jesus.jpg">
+        </section>
 
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+        <section>
+          <h2>5 Topics to talk about</h2>
+          <ul>
+            <li class="fragment">bindToController</li>
+            <li class="fragment">One-time Bindings</li>
+            <li class="fragment">Disabling Debug Info</li>
+            <li class="fragment">ngModelOptions</li>
+            <li class="fragment">Futuristic Routing</li>
+          </ul>
+        </section>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>bindToController</h2>
+        </section>
+        <section>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{defaultName}}
+  <div ng-controller="OtherController">
+    {{defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
+        <section>
+            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
+  $scope.defaultName = 'Pascal Precht';
+});
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
+app.controller('OtherController', ($scope) => {
+  $scope.defaultName = 'Christoph Burgdorf';
+});
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
+app.controller('YetAnotherController', ($scope) => {
+  $scope.defaultName = 'thoughtram';
+});
+</code></pre>
+        </section>
 
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-				</section>
+        <section>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{defaultName}}
+  <div ng-controller="OtherController">
+    {{defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
 
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
+        <section>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  Pascal Precht
+  <div ng-controller="OtherController">
+    Christoph Burgdorf
+    <div ng-controller="YetAnotherController">
+      thoughtram
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
 
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
+        <section>
+          <h2>Accessing outer scope's properties</h2>
 
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+          <p>There are basically two ways to access an outer scopes properties that are primitives.</p>
+          <ul style="margin-top: 1em;">
+            <li class="fragment">Using the scope's <code>$parent</code> property</li>
+            <li class="fragment">By creating a new object on the outer scope and defining properties there</li>
+          </ul>
+        </section>
 
-    var nodes = document.querySelectorAll( selector );
+        <section>
+          <h2>$parent property</h2>
+            <pre class="fragment" ng-non-bindable><code><div ng-controller="AppController">
+  {{defaultName}}
+  <div ng-controller="OtherController">
+    {{defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+<p style="visibility: hidden;" >foo</p>
+        </section>
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+        <section>
+          <h2>$parent property</h2>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{defaultName}}
+  <div ng-controller="OtherController">
+    {{$parent.defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{$parent.$parent.defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+<p class="fragment">Considered bad practice.</p>
+        </section>
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
+        <section>
+          <h2>Object property on scope</h2>
+            <pre class="fragment" ng-non-bindable><code>app.controller('AppController', ($scope) => {
+  $scope.defaultName = 'Pascal Precht';
+});
+
+app.controller('OtherController', ($scope) => {
+  $scope.defaultName = 'Christoph Burgdorf';
+});
+
+app.controller('YetAnotherController', ($scope) => {
+  $scope.defaultName = 'thoughtram';
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Object property on scope</h2>
+            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
+  $scope.app = { defaultName: 'Pascal Precht' };
+});
+
+app.controller('OtherController', ($scope) => {
+  $scope.other = { defaultName: 'Christoph Burgdorf' }
+});
+
+app.controller('YetAnotherController', ($scope) => {
+  $scope.another = { defaultName: 'thoughtram' }
+});
+</code></pre>
+        </section>
+        <section>
+          <h2>Object property on scope</h2>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{app.defaultName}}
+  <div ng-controller="OtherController">
+    {{$parent.defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{$parent.$parent.defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
+        <section>
+          <h2>Object property on scope</h2>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{app.defaultName}}
+  <div ng-controller="OtherController">
+    {{app.defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{app.defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
+        <section>
+          <h2>Object property on scope</h2>
+            <pre ng-non-bindable><code><div ng-controller="AppController">
+  {{app.defaultName}}
+  <div ng-controller="OtherController">
+    {{other.defaultName}}
+    <div ng-controller="YetAnotherController">
+      {{another.defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
+
+        <section>
+          <h3>Best Practice</h3>
+          <p>Always have a <code>.</code> in your binding expressions.</p>
+        </section>
+
+        <section>
+          <p>But both solutions feel more like a workaround.</p>
+        </section>
+
+        <section>
+          <h2>controllerAs</h2>
+
+            <pre class="fragment" ng-non-bindable><code><div ng-controller="AppController as app">
+  {{app.defaultName}}
+  <div ng-controller="OtherController as other">
+    {{other.defaultName}}
+    <div ng-controller="YetAnotherController as another">
+      {{another.defaultName}}
+    </div>
+  </div>
+</div>
+</code></pre>
+        </section>
+        <section>
+          <h2>controllerAs</h2>
+            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
+  $scope.app = { defaultName: 'Pascal Precht' };
+});
+
+app.controller('OtherController', ($scope) => {
+  $scope.other = { defaultName: 'Christoph Burgdorf' }
+});
+
+app.controller('YetAnotherController', ($scope) => {
+  $scope.another = { defaultName: 'thoughtram' }
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h2>controllerAs</h2>
+            <pre ng-non-bindable><code>app.controller('AppController', () => {
+  this.defaultName = 'Pascal Precht';
+});
+
+app.controller('OtherController', () => {
+  this.defaultName = 'Christoph Burgdorf';
+});
+
+app.controller('YetAnotherController', () => {
+  this.defaultName = 'thoughtram';
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Works for routing...</h2>
+          <pre ng-non-bindable><code>app.config(($routerProvider) => {
+  $routerProvider
+    .when('/', {
+      controller: 'BookListController',
+      controllerAs: 'bookList',
+      templateUrl: 'book-list.tpl.html'
+    });
+});</code></pre>
+          <pre class="fragment" ng-non-bindable><code><li ng-repeat="book in bookList.books">
+...
+</li></code></pre>
+        </section>
+
+        <section>
+          <h2>...and Directives!</h2>
+          <pre ng-non-bindable><code>app.directive('myComponent', () => {
+  return {
+    scope: {},
+    templateUrl: 'my-component.tpl.html',
+    controller: 'MyComponentController',
+    controllerAs: 'myComponent'
+  };
+})</code></pre>
+        </section>
+        <section>
+          <h2>...and Directives!</h2>
+          <pre ng-non-bindable><code>app.controller('MyComponentController', () => {
+  this.doSomething = () => {
+    ...
   }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+});</code></pre>
+          <pre class="fragment" ng-non-bindable><code><div class="my-component">
+  <button ng-click="myComponent.doSomething()">
+    Click Me!
+  </button>
+</div></code></pre>
+        </section>
+        <section>
+          <h3>Problem solved!</h3>
+        </section>
+        <section>
+          <h4>So what about <code>bindToController</code> then?</h4>
+        </section>
 
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+        <section>
+          <pre ng-non-bindable><code>app.controller('MyComponentController', () => {
+  this.myValue = 'My Component';
+});</code></pre>
+          <pre class="fragment" ng-non-bindable><code><div class="my-component">
+  {{myComponent.myValue}}
+</div></code></pre>
+<p class="fragment" style="margin-top: 2em;">What if <code>myValue</code> should be configurable from the outside world?</p>
+        </section>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
+        <section>
+          <pre ng-non-bindable><code>app.directive('myComponent', () => {
+  return {
+    scope: {
+      myValue: '='
+    },
+    ...
+  };
+})</code></pre>
+        </section>
 
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							<tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							<tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							<tr>
-						</tbody>
-					</table>
-				</section>
+        <section>
+          <p>Changes in scope properties are not reflected to the controller's <code>this</code>.</p>
+          <pre class="fragment" style="margin-top: 1em;" ng-non-bindable><code>app.controller('MyComponentController', ($scope) => {
+  this.myValue = 'My Component';
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
+  $scope.$watch('myValue', (newValue) => {
+    this.myValue = newValue;
+  }.bind(this));
+});</code></pre>
+          <p class="fragment" style="margin-top: 1em;">Super sad :(!</p>
+        </section>
 
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+        <section>
+          <p><code>bindToController</code> tells our directive to bind scope properties to the directive's controller.</p>
+          <pre class="fragment" style="margin-top: 2em;" ng-non-bindable><code>app.directive('myComponent', () => {
+  return {
+    scope: {
+      myValue: '='
+    },
+    templateUrl: 'my-component.tpl.html',
+    controller: 'MyComponentController',
+    controllerAs: 'myComponent',
+    bindToController: true
+  };
+})</code></pre>
+        </section>
 
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
+        <section>
+          <h2>Sweet!</h2>
+        </section>
+        <section>
+          <h2>Even better in 1.4</h2>
+          <div class="fragment">
+          <p>Able to be specified as convenient object notation:</p>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>bindToController: {
+  text: '@text',
+  obj: '=obj',
+  expr: '&expr'
+},
+scope: {}
+</code></pre>
+</div>
+        </section>
+        <section>
+          <h2>Even better in 1.4</h2>
+          <p>Also when creating new scopes!</p>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>bindToController: {
+  text: '@text',
+  obj: '=obj',
+  expr: '&expr'
+},
+scope: true
+</code></pre>
+        </section>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>One-time Bindings</h2>
+        </section>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>Disabling Debug Info</h2>
+        </section>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>ngModelOptions</h2>
+        </section>
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>Futuristig Routing</h2>
+        </section>
+      </div>
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
+    </div>
 
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
+    <script>
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
+        transition: 'none', // none/fade/slide/convex/concave/zoom
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
 
-			</div>
+    </script>
 
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-
-		<script>
-
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-
-		</script>
-
-	</body>
+  </body>
 </html>
