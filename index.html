@@ -582,7 +582,63 @@ scope: true
 <p>Hello {{name}}!</p>
 </code></pre>
 
-<iframe class="fragment" src="http://embed.plnkr.co/dB0p5wysKLvjK7oKAA3b/preview"></iframe>
+<iframe class="fragment" src="http://embed.plnkr.co/F5IGCe/preview"></iframe>
+        </section>
+
+        <section>
+          <p>We can always re-apply default events.</p>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
+  ng-model="name" 
+  ng-model-options="{ updateOn: 'blur' }"&gt;
+<p>Hello {{name}}!</p>
+</code></pre>
+        </section>
+        <section>
+          <p>We can always re-apply default events.</p>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
+  ng-model="name" 
+  ng-model-options="{ updateOn: 'default blur' }"&gt;
+<p>Hello {{name}}!</p>
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Debouncing model updates</h2>
+        </section>
+
+        <section class="image-slide">
+          <img src="img/search.gif">
+        </section>
+
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>var debounceSearch = debounceFactory(searchTask, debounceMs);
+
+function searchTask() {
+  // do actual search
+};
+
+function performSearch(searchStr) {
+  var deferred = $q.defer();
+  debounceSearch(deferred, searchStr);
+  return deferred.promise;
+};
+</code></pre>
+        </section>
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>function debounceFactory(task, ms) {
+  var timeout, result;
+  return function () {
+      var context = this, args = arguments;
+      var later = function () {
+        timeout = null;
+        result = func.apply(context, args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, ms);
+      return result;
+  };
+};
+</code></pre>
         </section>
         <!-- <section> -->
         <!--   <p>What if we <strong>don't</strong> want our model to be updated immediately?</p> -->
