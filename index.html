@@ -549,8 +549,24 @@ scope: true
         </section>
 
         <section class="image-slide">
-          <h2>Not everything has to be bound forever</h2>
+          <h2>What if I told you...</h2>
+        </section>
+
+
+        <section class="image-slide">
+          <h2>...not everything has to be bound forever</h2>
           <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
+        <section>
+          <h3>Meet the new one-time binding</h3>
+          <pre><code class="fragment">{{::greeting}}</code></pre>
+          <pre><code class="fragment"><span ng-bind="::greeting"></span></code></pre>
+          <pre><code class="fragment"><ul>
+  <li ng-repeat="greeting in ::greetings">
+    {{greeting}}
+  </li>
+</ul></code></pre>
         </section>
 
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
