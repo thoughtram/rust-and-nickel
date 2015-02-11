@@ -494,6 +494,65 @@ scope: true
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>One-time Bindings</h2>
         </section>
+          <section>
+          <pre ng-non-bindable><code>app.controller('MyController', () => {
+  this.greeting = 'Hello ng-nl crowd!';
+});</code></pre>
+          <pre class="fragment" ng-non-bindable><code><div ng-controller="MyController as ctrl">
+  {{ctrl.greeting}}
+</div></code></pre>
+<p class="fragment" style="margin-top: 2em;">How does that even work?</p>
+        </section>
+                <section class="image-slide">
+          <h2>Runtime</h2>
+          <img class="fragment" src="img/runtime-1.svg">
+        </section>
+
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-2.svg">
+        </section>
+
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-2-2.svg">
+        </section>
+
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-3.svg">
+        </section>
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-4.svg">
+        </section>
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-5.svg">
+        </section>
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-6.svg">
+        </section>
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-7.svg">
+        </section>
+        <section class="image-slide">
+          <h2>Runtime</h2>
+          <img src="img/runtime-8.svg">
+        </section>
+
+        <section>
+          <h3>Best Practice</h3>
+          <p>Be careful with the number of bindings</p>
+        </section>
+
+        <section class="image-slide">
+          <h2>Not everything has to be bound forever</h2>
+          <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>Disabling Debug Info</h2>
         </section>
