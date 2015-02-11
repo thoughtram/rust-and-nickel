@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>The Best Angular Yet!</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -142,7 +142,7 @@
             <li class="fragment">One-time Bindings</li>
             <li class="fragment">Disabling Debug Info</li>
             <li class="fragment">ngModelOptions</li>
-            <li class="fragment">Futuristic Routing</li>
+            <li class="fragment">Surprise!</li>
           </ul>
         </section>
 
@@ -500,6 +500,35 @@ scope: true
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>ngModelOptions</h2>
         </section>
+        
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code><input ng-model="name">
+<p>Hello {{name}}!</p>
+</code></pre>
+<iframe class="fragment" src="http://embed.plnkr.co/dB0p5wysKLvjK7oKAA3b/preview"></iframe>
+        </section>
+
+        <section data-background="img/seriously.gif">
+          <p style="margin-top: 6em;color: #fff; font-weight: bold; font-size: 2em;">Are you serious?</p>
+        </section>
+
+        <section>
+          <p><code>ngModelOptions</code> allows us to control how <code>ngModel</code> updates are done.</p>
+        </section>
+
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
+  ng-model="name" 
+  ng-model-options="{ updateOn: 'blur' }"&gt;
+<p>Hello {{name}}!</p>
+</code></pre>
+
+<iframe class="fragment" src="http://embed.plnkr.co/dB0p5wysKLvjK7oKAA3b/preview"></iframe>
+        </section>
+        <!-- <section> -->
+        <!--   <p>What if we <strong>don't</strong> want our model to be updated immediately?</p> -->
+        <!-- </section> -->
+
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>Futuristig Routing</h2>
         </section>
