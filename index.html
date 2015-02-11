@@ -640,6 +640,41 @@ function performSearch(searchStr) {
 };
 </code></pre>
         </section>
+
+        <section>
+          <h3>It doesn't have to be like that!</h3>
+        </section>
+        <section>
+          <p>We can delay model updates with <code>ngModelOptions</code> and <code>debounce</code>.</p>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input 
+  type="search" 
+  ng-model="searchQuery" 
+  ng-model-options="{ debounce: 300 }"&gt;
+<p>Search results for: {{searchQuery}}</p>
+</code></pre>
+<iframe class="fragment" src="http://embed.plnkr.co/PNxIXX/preview"></iframe>
+        </section>
+
+        <section>
+          <p>As soon as we use <code>ngModelOptions</code>, model and view can get out of sync.</p>
+        </section>
+
+        <section>
+          <h2>Synchronizing with $rollbackViewValue</h2>
+        </section>
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>app.controller('AppController', function ($scope) {
+  $scope.name = 'thoughtram';
+
+  $scope.cancel = function (e) {
+    if (e.keyCode == 27) {
+      $scope.userForm.userName.$rollbackViewValue();
+    }
+  };
+});
+</code></pre>
+<iframe src="http://embed.plnkr.co/KQbeSE/preview" class="fragment"></iframe>
+        </section>
         <!-- <section> -->
         <!--   <p>What if we <strong>don't</strong> want our model to be updated immediately?</p> -->
         <!-- </section> -->
