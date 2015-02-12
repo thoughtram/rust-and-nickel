@@ -136,11 +136,10 @@
         </section>
 
         <section>
-          <h2>5 Topics to talk about</h2>
+          <h2>4 Topics to talk about</h2>
           <ul>
             <li class="fragment">bindToController</li>
             <li class="fragment">One-time Bindings</li>
-            <li class="fragment">Disabling Debug Info</li>
             <li class="fragment">ngModelOptions</li>
             <li class="fragment">Surprise!</li>
           </ul>
@@ -495,6 +494,7 @@ scope: true
           <h2>One-time Bindings</h2>
         </section>
           <section>
+          <h2>Databinding in Angular</h2>
           <pre ng-non-bindable><code>app.controller('MyController', () => {
   this.greeting = 'Hello ng-nl crowd!';
 });</code></pre>
@@ -552,26 +552,81 @@ scope: true
           <h2>What if I told you...</h2>
         </section>
 
-
         <section class="image-slide">
           <h2>...not everything has to be bound forever</h2>
           <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
         </section>
 
-        <section>
-          <h3>Meet the new one-time binding</h3>
-          <pre><code class="fragment">{{::greeting}}</code></pre>
-          <pre><code class="fragment"><span ng-bind="::greeting"></span></code></pre>
-          <pre><code class="fragment"><ul>
-  <li ng-repeat="greeting in ::greetings">
-    {{greeting}}
-  </li>
-</ul></code></pre>
+        <section class="image-slide">
+          <h3>We can deregister watchers for data that won't change</h3>
         </section>
 
-        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
-          <h2>Disabling Debug Info</h2>
+
+        <section>
+          <h2>bindonce prior to 1.3</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><div bindonce="Person" bo-title="Person.title">
+    <span bo-text="Person.firstname"></span>
+    <span bo-text="Person.lastname"></span>
+    <img bo-src="Person.picture" bo-alt="Person.title">
+    &lt;p 
+      bo-class="{'fancy':Person.isNice}" 
+      bo-html="Person.story">
+    &lt;/p&gt;
+</div>
+</code></pre>
+</div>
+<p class="fragment" style="margin-top: 0.5em;">Lot's of new directives</p>
+<p class="fragment" style="margin-top: 0.5em;">bindonce root directive</p>
+<p class="fragment" style="margin-top: 0.5em;">Super sad :(</p>
         </section>
+
+
+        <section>
+          <h2>One-time bindings</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><div title="{{::Person.title}}">
+    <span ng-bind="::Person.firstname"></span>
+    <span>{{::Person.lastname}}</span>
+    &lt;img 
+      ng-src="::Person.picture" 
+      alt="{{::Person.title}}"&gt;
+    &lt;p 
+      ng-class="{'fancy'::Person.isNice}" 
+      ng-bind-html="::Person.story"&gt;
+    &lt;/p&gt;
+</div>
+</code></pre>
+</div>
+<p class="fragment" style="margin-top: 1em;">Super happy :)</p>
+        </section>
+
+
+                <section>
+          <h2>Also with ng-repeat</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><ul>
+  <li ng-repeat="item in ::items">{{item.name}}</li>
+</ul>
+</code></pre>
+</div>
+        </section>
+
+
+                <section>
+          <h2>Live Example</h2>
+<iframe src="http://embed.plnkr.co/p4L6xQEHKlMNAUM4jyu6/preview"></iframe>
+        </section>
+
+                <section>
+          <h2>How it works</h2>
+          <ul>
+            <li class="fragment">Expression starts with <code>::</code></li>
+            <li class="fragment">If expression evaluates not to <code>undefined</code> schedule deregistration</li>
+            <li class="fragment">Only deregister, if it still evaluates to <code>undefined</code> at deregistration time</li>
+          </ul>
+        </section>
+
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>ngModelOptions</h2>
         </section>
