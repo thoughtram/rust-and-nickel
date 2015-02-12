@@ -558,15 +558,66 @@ scope: true
           <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
         </section>
 
+
+        <section class="image-slide">
+          <h3>We can deregister watchers for data that won't change</h3>
+        </section>
+
+
         <section>
-          <h3>Meet the new one-time binding</h3>
-          <pre><code class="fragment">{{::greeting}}</code></pre>
-          <pre><code class="fragment"><span ng-bind="::greeting"></span></code></pre>
-          <pre><code class="fragment"><ul>
-  <li ng-repeat="greeting in ::greetings">
-    {{greeting}}
-  </li>
-</ul></code></pre>
+          <h2>bindonce prior to 1.3</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><div bindonce="Person" bo-title="Person.title">
+    <span bo-text="Person.firstname"></span>
+    <span bo-text="Person.lastname"></span>
+    <img bo-src="Person.picture" bo-alt="Person.title">
+    &lt;p 
+      bo-class="{'fancy':Person.isNice}" 
+      bo-html="Person.story">
+    &lt;/p&gt;
+</div>
+</code></pre>
+</div>
+<p class="fragment" style="margin-top: 0.5em;">Lot's of new directives</p>
+<p class="fragment" style="margin-top: 0.5em;">bindonce root directive</p>
+<p class="fragment" style="margin-top: 0.5em;">Super sad :(</p>
+        </section>
+
+
+        <section>
+          <h2>One-time bindings</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><div title="{{::Person.title}}">
+    <span ng-bind="::Person.firstname"></span>
+    <span>{{::Person.lastname}}</span>
+    &lt;img 
+      ng-src="::Person.picture" 
+      alt="{{::Person.title}}"&gt;
+    &lt;p 
+      ng-class="{'fancy'::Person.isNice}" 
+      ng-bind-html="::Person.story"&gt;
+    &lt;/p&gt;
+</div>
+</code></pre>
+</div>
+<p class="fragment" style="margin-top: 1em;">Super happy :)</p>
+        </section>
+
+
+                <section>
+          <h2>Also with ng-repeat</h2>
+          <div class="fragment">
+          <pre style="margin-top: 2em;" ng-non-bindable><code><ul>
+  <li ng-repeat="item in ::items">{{item.name}}</li>
+</ul>
+</code></pre>
+</div>
+        </section>
+
+
+                <section>
+          <h2>Live Example</h2>
+<iframe src="http://embed.plnkr.co/p4L6xQEHKlMNAUM4jyu6/preview"></iframe>
         </section>
 
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
