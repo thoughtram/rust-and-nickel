@@ -713,19 +713,36 @@ function performSearch(searchStr) {
 app.config(($routeProvider) => {
   $routerProvider
     .when('/', {
+      redirectTo: '/welcome'
+    })
+    .when('/welcome', {
       templateUrl: 'welcome.html',
       controller: 'WelcomeController'
-    })
-    .otherwise('/');
+    });
 });
 </code></pre>
         </section>
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app"&gt;
-  &lt;ng-view&gt;&lt;ng-view&gt;
+  &lt;ng-view&gt;&lt;/ng-view&gt;
 &lt;/div&gt;
 </code></pre>
         </section>
+    <section>
+      <h2>New Router works with components</h2>
+
+      <ul>
+        <li class="fragment">Component's template can have "view ports"</li>
+        <li class="fragment">Component's controller can have a router</li>
+        <li class="fragment">Component's router tells component what goes inside view ports</li>
+      </ul>
+    </section>
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app" ng-controller="AppController"&gt;
+  &lt;router-view-port&gt;&lt;/router-view-port&gt;
+&lt;/div&gt;
+</code></pre>
+    </section>
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>var app = angular.module('app', ['ngFuturisticRouter']);
 
@@ -733,8 +750,50 @@ app.controller('AppController', AppController);
 
 function AppController(router) {
   router.config([
-    { path: '/', redirectTo: '/welcome' },
-    { path: '/welcome', component: 'welcome' }
+    { path: '/', component: 'welcome' }
+  ]);
+}
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Welcome Component</h2>
+          <pre style="margin-top: 2em;" ng-non-bindable><code><h1>Welcome!</h1>
+<p>Hello {{welcome.name}}!</p></code></pre>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>function WelcomeController() {
+  this.name = 'Pascal';
+}</code></pre>
+          <p class="fragment"><code>components/welcome/welcome.html</code> is loaded asynchronously.</p>
+        </section>
+
+        <section>
+          <h2>Configure $componentLoader</h2>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>app.config($componentLoaderProvider) => {
+  $componentLoaderProvider
+    .setCtrlNameMapping((name) => {
+      // return controller name
+    })
+    .setTemplateMapping((name) => {
+      // return template url
+    });
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h3>We can have mutiple view ports too!</h3>
+        </section>
+
+        <section>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>function AppController(router) {
+  router.config([
+    { 
+      path: '/',
+      components: {
+        left: 'left',
+        right: 'right'
+      }
+    }
   ]);
 }
 </code></pre>
@@ -742,12 +801,44 @@ function AppController(router) {
 
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app"&gt;
-  &lt;router-view-port&gt;&lt;router-view-port&gt;
+  &lt;div router-view-port="left"&gt;&lt;/div&gt;
+  &lt;div router-view-port="right"&gt;&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
         </section>
 
+        <section>
+          <h2>Component Lifecycle Hooks</h2>
 
+          <ul>
+            <li class="fragment"><code>canActivate</code> - Runs before switching to next component</li>
+            <li class="fragment"><code>activate</code> - Fires just before navigation finishes</li>
+            <li class="fragment"><code>canDeactivate</code> - Fires before any new component is instantiated</li>
+            <li class="fragment"><code>deactivate</code> - Fires for each component that is removed as part of navigation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          <pre style="margin-top: 2em;" ng-non-bindable><code>function MyController(user, $http) {
+  this.user = user;
+  this.$http = $http;
+}
+
+MyController.prototype.canActivate = function() {
+  return this.user.isAdmin;
+};
+</code></pre>
+
+        </section>
+
+        <section>
+          <h3>More to come at <strong>ng-conf</strong> :)</h3>
+        </section>
+
+        <section>
+          <img src="img/async-di.png" style="width: 800px;">
+        </section>
         <section class="deck-slide">
           <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/angularjs-shield.png">
           <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">Thanks!</h1>
