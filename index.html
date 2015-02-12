@@ -495,6 +495,7 @@ scope: true
           <h2>One-time Bindings</h2>
         </section>
           <section>
+          <h2>Databinding in Angular</h2>
           <pre ng-non-bindable><code>app.controller('MyController', () => {
   this.greeting = 'Hello ng-nl crowd!';
 });</code></pre>
@@ -552,12 +553,10 @@ scope: true
           <h2>What if I told you...</h2>
         </section>
 
-
         <section class="image-slide">
           <h2>...not everything has to be bound forever</h2>
           <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
         </section>
-
 
         <section class="image-slide">
           <h3>We can deregister watchers for data that won't change</h3>
@@ -618,6 +617,15 @@ scope: true
                 <section>
           <h2>Live Example</h2>
 <iframe src="http://embed.plnkr.co/p4L6xQEHKlMNAUM4jyu6/preview"></iframe>
+        </section>
+
+                <section>
+          <h2>How it works</h2>
+          <ul>
+            <li class="fragment">Expression starts with <code>::</code></li>
+            <li class="fragment">If expression evaluates not to <code>undefined</code> schedule deregistration</li>
+            <li class="fragment">Only deregister, if it still evaluates to <code>undefined</code> at deregistration time</li>
+          </ul>
         </section>
 
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
