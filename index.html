@@ -565,7 +565,7 @@ function performSearch(searchStr) {
       var context = this, args = arguments;
       var later = function () {
         timeout = null;
-        result = func.apply(context, args);
+        result = task.apply(context, args);
       };
       clearTimeout(timeout);
       timeout = setTimeout(later, ms);
