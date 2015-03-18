@@ -141,7 +141,7 @@
             <li class="fragment">bindToController</li>
             <li class="fragment">ngModelOptions</li>
             <li class="fragment">One-time Bindings</li>
-            <li class="fragment">Surprise!</li>
+            <li class="fragment"><s>Surprise!</s> The new Router</li>
           </ul>
         </section>
 
@@ -794,17 +794,17 @@ app.config(($routeProvider) => {
     </section>
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app" ng-controller="AppController"&gt;
-  &lt;router-view-port&gt;&lt;/router-view-port&gt;
+  &lt;ng-viewport&gt;&lt;/ng-viewport&gt;
 &lt;/div&gt;
 </code></pre>
     </section>
         <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>var app = angular.module('app', ['ngFuturisticRouter']);
+          <pre style="margin-top: 2em;" ng-non-bindable><code>var app = angular.module('app', ['ngNewRouter']);
 
 app.controller('AppController', AppController);
 
-function AppController(router) {
-  router.config([
+function AppController($router) {
+  $router.config([
     { path: '/', component: 'welcome' }
   ]);
 }
@@ -840,8 +840,8 @@ function AppController(router) {
         </section>
 
         <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>function AppController(router) {
-  router.config([
+          <pre style="margin-top: 2em;" ng-non-bindable><code>function AppController($router) {
+  $router.config([
     { 
       path: '/',
       components: {
@@ -856,8 +856,8 @@ function AppController(router) {
 
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app"&gt;
-  &lt;div router-view-port="left"&gt;&lt;/div&gt;
-  &lt;div router-view-port="right"&gt;&lt;/div&gt;
+  &lt;div ng-viewport="left"&gt;&lt;/div&gt;
+  &lt;div ng-viewport="right"&gt;&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
         </section>
