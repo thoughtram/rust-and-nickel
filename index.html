@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/thoughtram.css" id="theme">
+    <link rel="stylesheet" href="css/theme/custom.css" id="custom">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -44,9 +45,6 @@
       <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@cburgdorf</span>
     </a>
 
-    <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 6em; z-index: 2;" href="http://twitter.com/PascalPrecht">
-      <span style="color: #888; text-shadow: none; vertical-align: 80%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">@PascalPrecht</span>
-    </a>
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -56,12 +54,11 @@
         <!--   <img alt="Extend your memory." src="img/thoughtram-logo-line-with-tag-line.png"> -->
         <!-- </section> -->
         <section class="deck-slide">
-          <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/angularjs-shield.png">
-          <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">The Best Angular Yet!</h1>
-          <p style="text-align: center; font-size: 0.8em;">By <a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a> and <a href="http://twitter.com/PascalPrecht">Pascal Precht</a></p>
+          <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/rust-logo-blk.svg">
+          <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">Rust & Nickel</h1>
+          <p style="text-align: center; font-size: 0.8em;">By <a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a></p>
           <div style="text-align: center;">
             <img style="margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/christoph.png">
-            <img style="margin: 0; margin-left: 0.6em; border-radius: 50%; width: 100px;" src="img/pascal.jpeg">
           </div>
         </section>
 
@@ -72,11 +69,6 @@
             <h3>Christoph Burgdorf</h3>
             <h3 style="margin-top: -0.5em;"><a href="http://twitter.com/cburgdorf">@cburgdorf</a></h3>
           </div>
-          <div class="about">
-            <img width="250" height="250" alt="Pascal" src="img/pascal.jpeg">
-            <h3>Pascal Precht</h3>
-            <h3 style="margin-top: -0.5em;"><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></h3>
-          </div>
         </div>
         </section>
 
@@ -85,73 +77,331 @@
         </section>
 
         <section>
-          <p style="font-weight: bold;" >There's a lot of stuff happening in Angular 2.0</p>
-        </section>
-        <section class="image-slide">
-          <img src="img/rip-angular-module.png">
-        </section>
-        <section class="image-slide">
-          <img src="img/rip-scope.png">
-        </section>
-        <section class="image-slide">
-          <img src="img/rip-controllers.png">
-        </section>
-        <section class="image-slide">
-          <img src="img/rip-ddo.png">
-        </section>
-        <section class="image-slide">
-          <img src="img/rip-jqlite.png">
-        </section>
-
-        <section class="image-slide">
-          <img src="img/rip-all-the-things.png">
-          <img class="fragment" style="position: absolute; right: -1em; transform: rotate(-10deg); top: 5em; border: 10px solid white!important; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8)!important;" src="img/chris-rock-huh-face.gif">
-        </section>
-
-        <section class="image-slide">
-          <img class="fragment" style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
-          <img class="fragment" style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble.svg">
-        </section>
-
-        <section class="image-slide">
-          <h2>So my 1.x code is not gonna work anymore?</h2>
-          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
-        </section>
-        <section class="image-slide">
-          <h2>And I should wait until 2.0 is out?</h2>
-          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
-        </section>
-
-        <section class="image-slide">
-          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
-          <img class="fragment" style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-2.svg">
-        </section>
-        <section class="image-slide">
-          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
-          <img style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-3.svg">
-        </section>
-        <section class="image-slide">
-          <img style="margin-left: -10em; margin-top: 5em; width: 300px;" src="img/Igor_Minar.png">
-          <img style="position: absolute; width: 500px; top: 1em; right: 0;" src="img/speech-bubble-4.svg">
-        </section>
-
-        <section class="image-slide">
-          <img src="img/angular-jesus.jpg">
+          <h2 style="color:red">DANGER ZONE</h2>
+          <p class="fragment">You're gonna learn from a Rust noob</p>
         </section>
 
         <section>
           <h2>4 Topics to talk about</h2>
           <ul>
-            <li class="fragment">bindToController</li>
-            <li class="fragment">ngModelOptions</li>
-            <li class="fragment">One-time Bindings</li>
-            <li class="fragment"><s>Surprise!</s> The new Router</li>
+            <li class="fragment">Why Rust</li>
+            <li class="fragment">Rust Features</li>
+            <li class="fragment">Rust for Web Development</li>
+            <li class="fragment">Nickel.rs</li>
           </ul>
         </section>
 
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
-          <h2>bindToController</h2>
+          <h2>Why Rust?</h2>
         </section>
+
+        <section>
+            <h2>Certain areas need C/C++</h2>
+            <ul>
+              <li class="fragment">Operating Systems</li>
+              <li class="fragment">Browsers</li>
+              <li class="fragment">Gaming</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>The offer of C/C++</h2>
+            <ul>
+              <li class="fragment">Direct Memory Access</li>
+              <li class="fragment">Zero Cost Abstractions</li>
+              <li class="fragment">No Garbage Collection</li>
+              <li class="fragment">Compiled</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>What's wrong with C/C++</h2>
+            <ul>
+              <li class="fragment">Segfaults</li>
+              <li class="fragment">Language Flaws</li>
+              <li class="fragment">Data Races</li>
+              <li class="fragment">Long Compile Times</li>
+            </ul>
+        </section>
+
+        <section style="display: block;">
+            <div class="performance-chart visible" data-fragment-index="0">
+            <span class="performance-chart__axe-title fragment" style="position: absolute;top: 221px;left: -212px;transform: rotate(-90deg);" data-fragment-index="0">Control / Performance</span>
+            <span class="performance-chart__axe-title fragment" style="position: absolute;bottom: -50px;right: 360px;" data-fragment-index="0">Safety</span>
+
+            <span class="performance-chart__lang fragment" data-fragment-index="1" style="
+                position: absolute;
+                left: 20px;
+                top: 10px;
+            ">C</span>
+
+            <span class="performance-chart__lang fragment" data-fragment-index="1" style="
+                position: absolute;
+                left: 71px;
+                top: 90px;">C++</span>
+
+            <span class="performance-chart__lang fragment" data-fragment-index="3" style="
+                position: absolute;
+                left: 250px;
+                top: 190px;">Go</span>
+
+
+            <span class="performance-chart__lang fragment" data-fragment-index="3" style="
+                position: absolute;
+                left: 350px;
+                top: 230px;">Java</span>
+
+            <span class="performance-chart__lang fragment" data-fragment-index="3" style="
+                position: absolute;
+                left: 300px;
+                top: 310px;">ML</span>
+
+            <span class="performance-chart__lang fragment" data-fragment-index="2" style="
+                position: absolute;
+                right: 20px;
+                bottom: 20px
+            ">Haskell</span>
+
+            </div>
+        </section>
+
+        <section>
+          <p style="font-style:italic">"Rust is a systems programming language that runs blazingly fast, prevents almost all crashes*, and eliminates data races."</p>
+          <p style="font-size: 0.5em; margin-top: 100px; text-align: right; font-style: italic;">* In theory. Rust is a work-in-progress and may do anything it likes up to and including eating your laundry.</p>
+        </section>
+
+        <section style="display: block;">
+            <div class="performance-chart visible">
+            <span class="performance-chart__axe-title" style="position: absolute;top: 221px;left: -212px;transform: rotate(-90deg);">Control / Performance</span>
+            <span class="performance-chart__axe-title" style="position: absolute;bottom: -50px;right: 360px;">Safety</span>
+
+            <span class="performance-chart__lang" data-fragment-index="1" style="
+                position: absolute;
+                left: 20px;
+                top: 10px;
+            ">C</span>
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                left: 71px;
+                top: 90px;">C++</span>
+
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                right: 20px;
+                top: 10px;">Rust</span>
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                left: 250px;
+                top: 190px;">Go</span>
+
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                left: 350px;
+                top: 230px;">Java</span>
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                left: 300px;
+                top: 310px;">ML</span>
+
+            <span class="performance-chart__lang" style="
+                position: absolute;
+                right: 20px;
+                bottom: 20px
+            ">Haskell</span>
+
+            </div>
+        </section>
+
+
+        <section data-background="img/hooray.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">Tell me more!</p>
+        </section>
+
+
+        <section>
+            <h2>Rust governance</h2>
+            <ul>
+              <li class="fragment">Created by Mozilla</li>
+              <li class="fragment">Open Source posterchild</li>
+              <li class="fragment">Lots of external contributors</li>
+              <li class="fragment">RFC Process</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>The Zen of Rust</h2>
+            <ul>
+              <li class="fragment">Modern C/C++ replacement</li>
+              <li class="fragment">Memory Safety without Garbage Collection</li>
+              <li class="fragment">Rich Typesystem</li>
+              <li class="fragment">Functional</li>
+            </ul>
+        </section>
+
+
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>Rust features</h2>
+        </section>
+
+
+        <section>
+            <h2>Ownership</h2>
+        </section>
+
+
+        <section>
+            <h2>Consider this JS Code</h2>
+            <pre ng-non-bindable><code>var service = new MyService();
+var secondService = new SecondService(service);
+var thirdService = new ThirdService(service);
+</code></pre>
+<p class="fragment">Now both <code>secondService</code> and <code>thirdService</code> hold a reference to <code>service</code></p>
+        </section>
+
+
+        <section>
+            <h2>Same thing in Rust</h2>
+            <pre ng-non-bindable><code>let service = Service::new();
+let second_service = SecondService::new(service);
+let third_service = ThirdService::new(service);</code></pre>
+<p class="fragment">Doesn't compile!</p>
+        </section>
+
+
+        <section class="image-slide">
+          <h2>But why???</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
+
+        <section class="image-slide">
+          <h2>Cuz you've been rude!</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
+
+        <section class="image-slide">
+          <h2>How that???</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
+
+        <section class="image-slide">
+          <h2>Let me show you.</h2>
+          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        </section>
+
+
+        <section>
+            <h2>JS is garbage collected</h2>
+        </section>
+
+
+        <section>
+            <h2>You can lend things out</h2>
+            <pre ng-non-bindable><code>let service = Service::new();
+let second_service = SecondService::new(&service);
+let third_service = ThirdService::new(&service);</code></pre>
+<p class="fragment"></p>
+        </section>
+
+
+        <section>
+            <h2>Traits</h2>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>trait HasAge {
+    fn get_age (&self) -> i32;
+}</code></pre>
+<p class="fragment">Traits are like interfaces. They define a contract.</code></p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct Air;
+
+impl HasAge for Person {
+    fn get_age (&self) -> i32 { 31 }
+}
+
+impl HasAge for Car {
+    fn get_age (&self) -> i32 { 10 }
+}</code></pre>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
+    println!("{} years old", thing_with_age.get_age());
+}
+fn main() {
+    let person = Person;
+    let car = Car;
+    let air = Air;
+    tell_age(&person);
+    tell_age(&car);
+    //compile time error since air doesn't impl HasAge
+    //tell_age(&air);
+}
+</code></pre>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>trait HasAge {
+    fn get_age (&self) -> i32 {
+        0
+    }
+}</code></pre>
+        <p class="fragment">Traits can have default implementations</code></p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>trait HasAge {
+    fn get_age (&self) -> i32;
+}
+
+impl HasAge for i32 {
+    fn get_age (&self) -> i32 { 0 }
+}
+</code></pre>
+        <p class="fragment">Traits can be written for foreign types!</code></p>
+        </section>
+
+
+        <section data-background="img/chris-rock-huh-face.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">Isn't that wild west crazy?!</p>
+        </section>
+
+
+        <section>
+            <h2>Trait limitations</h2>
+            <ul>
+              <li class="fragment">Either the trait or the type you're writing the <code>impl</code> for must be inside your crate</li>
+              <li class="fragment">Traits must be brought into scope with <code>use</code></li>
+            </ul>
+        </section>
+
+
+        <section>
+            <p>Traits can be implemented for foreign types, too!</p>
+            <p class="fragment">
+                Either the trait or the type you're writing the impl for must be inside your crate
+            </p>
+        </section>
+
+
         <section>
             <pre ng-non-bindable><code><div ng-controller="AppController">
   {{defaultName}}
@@ -165,33 +415,6 @@
 </code></pre>
         </section>
 
-        <section>
-            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
-  $scope.defaultName = 'Pascal Precht';
-});
-
-app.controller('OtherController', ($scope) => {
-  $scope.defaultName = 'Christoph Burgdorf';
-});
-
-app.controller('YetAnotherController', ($scope) => {
-  $scope.defaultName = 'thoughtram';
-});
-</code></pre>
-        </section>
-
-        <section>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{defaultName}}
-  <div ng-controller="OtherController">
-    {{defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
 
         <section>
             <pre ng-non-bindable><code><div ng-controller="AppController">
@@ -206,6 +429,7 @@ app.controller('YetAnotherController', ($scope) => {
 </code></pre>
         </section>
 
+
         <section>
           <h2>Accessing outer scope's properties</h2>
 
@@ -215,6 +439,7 @@ app.controller('YetAnotherController', ($scope) => {
             <li class="fragment">By creating a new object on the outer scope and defining properties there</li>
           </ul>
         </section>
+
 
         <section>
           <h2>$parent property</h2>
@@ -497,7 +722,7 @@ scope: true
         <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
           <h2>ngModelOptions</h2>
         </section>
-        
+
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code><input ng-model="name">
 <p>Hello {{name}}!</p>
@@ -515,7 +740,7 @@ scope: true
 
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name" 
+  ng-model="name"
   ng-model-options="{ updateOn: 'blur' }"&gt;
 <p>Hello {{name}}!</p>
 </code></pre>
@@ -526,7 +751,7 @@ scope: true
         <section>
           <p>We can always re-apply default events.</p>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name" 
+  ng-model="name"
   ng-model-options="{ updateOn: 'blur' }"&gt;
 <p>Hello {{name}}!</p>
 </code></pre>
@@ -534,7 +759,7 @@ scope: true
         <section>
           <p>We can always re-apply default events.</p>
           <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name" 
+  ng-model="name"
   ng-model-options="{ updateOn: 'default blur' }"&gt;
 <p>Hello {{name}}!</p>
 </code></pre>
@@ -584,9 +809,9 @@ function performSearch(searchStr) {
         </section>
         <section>
           <p>We can delay model updates with <code>ngModelOptions</code> and <code>debounce</code>.</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input 
-  type="search" 
-  ng-model="searchQuery" 
+          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
+  type="search"
+  ng-model="searchQuery"
   ng-model-options="{ debounce: 300 }"&gt;
 <p>Search results for: {{searchQuery}}</p>
 </code></pre>
@@ -693,8 +918,8 @@ function performSearch(searchStr) {
     <span bo-text="Person.firstname"></span>
     <span bo-text="Person.lastname"></span>
     <img bo-src="Person.picture" bo-alt="Person.title">
-    &lt;p 
-      bo-class="{'fancy':Person.isNice}" 
+    &lt;p
+      bo-class="{'fancy':Person.isNice}"
       bo-html="Person.story">
     &lt;/p&gt;
 </div>
@@ -712,11 +937,11 @@ function performSearch(searchStr) {
           <pre style="margin-top: 2em;" ng-non-bindable><code><div title="{{::Person.title}}">
     <span ng-bind="::Person.firstname"></span>
     <span>{{::Person.lastname}}</span>
-    &lt;img 
-      ng-src="::Person.picture" 
+    &lt;img
+      ng-src="::Person.picture"
       alt="{{::Person.title}}"&gt;
-    &lt;p 
-      ng-class="::{'fancy':Person.isNice}" 
+    &lt;p
+      ng-class="::{'fancy':Person.isNice}"
       ng-bind-html="::Person.story"&gt;
     &lt;/p&gt;
 </div>
@@ -846,7 +1071,7 @@ function AppController($router) {
         <section>
           <pre style="margin-top: 2em;" ng-non-bindable><code>function AppController($router) {
   $router.config([
-    { 
+    {
       path: '/',
       components: {
         left: 'left',
@@ -905,10 +1130,9 @@ MyController.prototype.canActivate = function() {
         <section class="deck-slide">
           <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/angularjs-shield.png">
           <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">Thanks!</h1>
-          <p style="text-align: center; font-size: 0.8em;"><a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a> and <a href="http://twitter.com/PascalPrecht">Pascal Precht</a></p>
+          <p style="text-align: center; font-size: 0.8em;"><a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a></p>
           <div style="text-align: center;">
             <img style="margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/christoph.png">
-            <img style="margin: 0; margin-left: 0.6em; border-radius: 50%; width: 100px;" src="img/pascal.jpeg">
           </div>
         </section>
         <section>

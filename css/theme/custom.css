@@ -1,0 +1,18 @@
+
+.reveal .performance-chart {
+    border-left: 5px solid hsl(128, 9%, 34%);
+    border-bottom: 5px solid hsl(128, 9%, 34%);
+    position: relative;
+    height: 500px;
+    width: 800px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+/*.reveal .performance-chart__axe-title {
+  color: hsl(33, 48%, 87%);
+}*/
+
+.reveal .performance-chart__lang {
+  font-size: 70px;
+}
