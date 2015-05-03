@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>The Best Angular Yet!</title>
+    <title>Rust & Nickel</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -37,8 +37,8 @@
 
   <body>
     <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://ngeurope.org">
-      <img style="opacity: 0.5;"height="50" src="img/ng-nl-logo.png">
-      <span style="color: #888; text-shadow: none; vertical-align: 90%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#ngnlconf</span>
+      <!-- <img style="opacity: 0.5;"height="50" src="img/ng-nl-logo.png"> -->
+      <span style="color: #888; text-shadow: none; vertical-align: 90%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#webmontag</span>
     </a>
 
     <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/cburgdorf">
@@ -82,11 +82,10 @@
         </section>
 
         <section>
-          <h2>4 Topics to talk about</h2>
+          <h2>3 Topics to talk about</h2>
           <ul>
             <li class="fragment">Why Rust</li>
             <li class="fragment">Rust Features</li>
-            <li class="fragment">Rust for Web Development</li>
             <li class="fragment">Nickel.rs</li>
           </ul>
         </section>
@@ -240,7 +239,7 @@
               <li class="fragment">Modern C/C++ replacement</li>
               <li class="fragment">Memory Safety without Garbage Collection</li>
               <li class="fragment">Rich Typesystem</li>
-              <li class="fragment">Functional</li>
+              <li class="fragment">Strong Functional Programming influence</li>
             </ul>
         </section>
 
@@ -257,17 +256,17 @@
 
         <section>
             <h2>Consider this JS Code</h2>
-            <pre ng-non-bindable><code>var service = new MyService();
+            <pre ng-non-bindable><code class="rust">var service = new MyService();
 var secondService = new SecondService(service);
 var thirdService = new ThirdService(service);
 </code></pre>
-<p class="fragment">Now both <code>secondService</code> and <code>thirdService</code> hold a reference to <code>service</code></p>
+<p class="fragment">Now both <code class="rust">secondService</code> and <code class="rust">thirdService</code> hold a reference to <code class="rust">service</code></p>
         </section>
 
 
         <section>
             <h2>Same thing in Rust</h2>
-            <pre ng-non-bindable><code>let service = Service::new();
+            <pre ng-non-bindable><code class="rust">let service = Service::new();
 let second_service = SecondService::new(service);
 let third_service = ThirdService::new(service);</code></pre>
 <p class="fragment">Doesn't compile!</p>
@@ -297,18 +296,20 @@ let third_service = ThirdService::new(service);</code></pre>
           <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
         </section>
 
-
-        <section>
-            <h2>JS is garbage collected</h2>
-        </section>
-
-
         <section>
             <h2>You can lend things out</h2>
-            <pre ng-non-bindable><code>let service = Service::new();
+            <pre ng-non-bindable><code class="rust">let service = Service::new();
 let second_service = SecondService::new(&service);
 let third_service = ThirdService::new(&service);</code></pre>
-<p class="fragment"></p>
+        </section>
+
+        <section>
+            <h2>Ownership</h2>
+            <ul>
+              <li class="fragment">There's only one owner</li>
+              <li class="fragment">Borrowing is more polite than taking ownership</li>
+              <li class="fragment">Shared ownership can be achieved through special pointer with runtime checks</li>
+            </ul>
         </section>
 
 
@@ -318,7 +319,7 @@ let third_service = ThirdService::new(&service);</code></pre>
 
 
         <section>
-            <pre ng-non-bindable><code>trait HasAge {
+            <pre ng-non-bindable><code class="rust">trait HasAge {
     fn get_age (&self) -> i32;
 }</code></pre>
 <p class="fragment">Traits are like interfaces. They define a contract.</code></p>
@@ -326,7 +327,7 @@ let third_service = ThirdService::new(&service);</code></pre>
 
 
         <section>
-            <pre ng-non-bindable><code>struct Person;
+            <pre ng-non-bindable><code class="rust">struct Person;
 struct Car;
 struct Air;
 
@@ -341,7 +342,7 @@ impl HasAge for Car {
 
 
         <section>
-            <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
+            <pre ng-non-bindable><code class="rust">fn tell_age(thing_with_age: &HasAge) {
     println!("{} years old", thing_with_age.get_age());
 }
 fn main() {
@@ -358,7 +359,7 @@ fn main() {
 
 
         <section>
-            <pre ng-non-bindable><code>trait HasAge {
+            <pre ng-non-bindable><code class="rust">trait HasAge {
     fn get_age (&self) -> i32 {
         0
     }
@@ -368,7 +369,7 @@ fn main() {
 
 
         <section>
-            <pre ng-non-bindable><code>trait HasAge {
+            <pre ng-non-bindable><code class="rust">trait HasAge {
     fn get_age (&self) -> i32;
 }
 
@@ -388,756 +389,693 @@ impl HasAge for i32 {
         <section>
             <h2>Trait limitations</h2>
             <ul>
-              <li class="fragment">Either the trait or the type you're writing the <code>impl</code> for must be inside your crate</li>
+              <li class="fragment">Either the trait or the type you're writing the <code class="rust">impl</code> for must be inside your crate</li>
               <li class="fragment">Traits must be brought into scope with <code>use</code></li>
             </ul>
         </section>
 
+        <section>
+            <h2>Generics</h2>
+        </section>
+
 
         <section>
-            <p>Traits can be implemented for foreign types, too!</p>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct SmartPersonStorage;
+
+impl SmartPersonStorage {
+    fn add (&self, item: Person) { /*code*/ }
+    fn get (&self, id: i32) -> Person { /*code*/ }
+}
+</code></pre>
+    <p class="fragment">What if we need a <code>SmartCarStorage</code>, too?</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct SmartPersonStorage;
+struct SmartCarStorage;
+
+impl SmartPersonStorage {
+    fn add (&self, item: Person) { /*code*/ }
+    fn get (&self, id: i32) -> Person { /*code*/ }
+}
+impl SmartCarStorage {
+    fn add (&self, item: Car) { /*code*/ }
+    fn get (&self, id: i32) -> Car { /*code*/ }
+}
+</code></pre>
+    <p class="fragment">Give up DRY</p>
+    <p class="fragment">:( sad face</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct SmartStorage;
+
+impl SmartStorage {
+    fn add (&self, item: &Any) { /*code*/ }
+    fn get (&self, id: i32) -> &Any { /*code*/ }
+}
+</code></pre>
+    <p class="fragment">Give up type safety</p>
+    <p class="fragment">:( sad face</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct SmartStorage;
+
+impl SmartStorage&lt;T> {
+    fn add (&self, item: T) { /*code*/ }
+    fn get (&self, id: i32) -> T { /*code*/ }
+}
+</code></pre>
+    <p class="fragment">Give up nothing</p>
+    <p class="fragment">:) happy face</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code>struct Person;
+struct Car;
+struct SmartStorage;
+
+impl SmartStorage&lt;T: HasId> {
+    fn add (&self, item: T) { /*code*/ }
+    fn get (&self, id: i32) -> T { /*code*/ }
+}
+</code></pre>
+    <p class="fragment">Can use trait bounds</p>
+        </section>
+
+
+
+        <section>
+            <h2>Traits + Generics = static dispatch</h2>
             <p class="fragment">
-                Either the trait or the type you're writing the impl for must be inside your crate
+                Let's refactor some earlier code!
             </p>
         </section>
 
 
         <section>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{defaultName}}
-  <div ng-controller="OtherController">
-    {{defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-
-
-        <section>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  Pascal Precht
-  <div ng-controller="OtherController">
-    Christoph Burgdorf
-    <div ng-controller="YetAnotherController">
-      thoughtram
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-
-
-        <section>
-          <h2>Accessing outer scope's properties</h2>
-
-          <p>There are basically two ways to access an outer scopes properties that are primitives.</p>
-          <ul style="margin-top: 1em;">
-            <li class="fragment">Using the scope's <code>$parent</code> property</li>
-            <li class="fragment">By creating a new object on the outer scope and defining properties there</li>
-          </ul>
-        </section>
-
-
-        <section>
-          <h2>$parent property</h2>
-            <pre class="fragment" ng-non-bindable><code><div ng-controller="AppController">
-  {{defaultName}}
-  <div ng-controller="OtherController">
-    {{defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-<p style="visibility: hidden;" >foo</p>
-        </section>
-
-        <section>
-          <h2>$parent property</h2>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{defaultName}}
-  <div ng-controller="OtherController">
-    {{$parent.defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{$parent.$parent.defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-<p class="fragment">Considered bad practice.</p>
-        </section>
-
-        <section>
-          <h2>Object property on scope</h2>
-            <pre class="fragment" ng-non-bindable><code>app.controller('AppController', ($scope) => {
-  $scope.defaultName = 'Pascal Precht';
-});
-
-app.controller('OtherController', ($scope) => {
-  $scope.defaultName = 'Christoph Burgdorf';
-});
-
-app.controller('YetAnotherController', ($scope) => {
-  $scope.defaultName = 'thoughtram';
-});
-</code></pre>
-        </section>
-
-        <section>
-          <h2>Object property on scope</h2>
-            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
-  $scope.app = { defaultName: 'Pascal Precht' };
-});
-
-app.controller('OtherController', ($scope) => {
-  $scope.other = { defaultName: 'Christoph Burgdorf' }
-});
-
-app.controller('YetAnotherController', ($scope) => {
-  $scope.another = { defaultName: 'thoughtram' }
-});
-</code></pre>
-        </section>
-        <section>
-          <h2>Object property on scope</h2>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{defaultName}}
-  <div ng-controller="OtherController">
-    {{$parent.defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{$parent.$parent.defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-        <section>
-          <h2>Object property on scope</h2>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{app.defaultName}}
-  <div ng-controller="OtherController">
-    {{app.defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{app.defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-        <section>
-          <h2>Object property on scope</h2>
-            <pre ng-non-bindable><code><div ng-controller="AppController">
-  {{app.defaultName}}
-  <div ng-controller="OtherController">
-    {{other.defaultName}}
-    <div ng-controller="YetAnotherController">
-      {{another.defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-
-        <section>
-          <h3>Best Practice</h3>
-          <p>Always have a <code>.</code> in your binding expressions.</p>
-        </section>
-
-        <section>
-          <p>But both solutions feel more like a workaround.</p>
-        </section>
-
-        <section>
-          <h2>controllerAs</h2>
-
-            <pre class="fragment" ng-non-bindable><code><div ng-controller="AppController as app">
-  {{app.defaultName}}
-  <div ng-controller="OtherController as other">
-    {{other.defaultName}}
-    <div ng-controller="YetAnotherController as another">
-      {{another.defaultName}}
-    </div>
-  </div>
-</div>
-</code></pre>
-        </section>
-        <section>
-          <h2>controllerAs</h2>
-            <pre ng-non-bindable><code>app.controller('AppController', ($scope) => {
-  $scope.app = { defaultName: 'Pascal Precht' };
-});
-
-app.controller('OtherController', ($scope) => {
-  $scope.other = { defaultName: 'Christoph Burgdorf' }
-});
-
-app.controller('YetAnotherController', ($scope) => {
-  $scope.another = { defaultName: 'thoughtram' }
-});
-</code></pre>
-        </section>
-
-        <section>
-          <h2>controllerAs</h2>
-            <pre ng-non-bindable><code>app.controller('AppController', () => {
-  this.defaultName = 'Pascal Precht';
-});
-
-app.controller('OtherController', () => {
-  this.defaultName = 'Christoph Burgdorf';
-});
-
-app.controller('YetAnotherController', () => {
-  this.defaultName = 'thoughtram';
-});
-</code></pre>
-        </section>
-
-        <section>
-          <h2>Works for routing...</h2>
-          <pre ng-non-bindable><code>app.config(($routerProvider) => {
-  $routerProvider
-    .when('/', {
-      controller: 'BookListController',
-      controllerAs: 'bookList',
-      templateUrl: 'book-list.tpl.html'
-    });
-});</code></pre>
-          <pre class="fragment" ng-non-bindable><code><li ng-repeat="book in bookList.books">
-...
-</li></code></pre>
-        </section>
-
-        <section>
-          <h2>...and Directives!</h2>
-          <pre ng-non-bindable><code>app.directive('myComponent', () => {
-  return {
-    scope: {},
-    templateUrl: 'my-component.tpl.html',
-    controller: 'MyComponentController',
-    controllerAs: 'myComponent'
-  };
-})</code></pre>
-        </section>
-        <section>
-          <h2>...and Directives!</h2>
-          <pre ng-non-bindable><code>app.controller('MyComponentController', () => {
-  this.doSomething = () => {
-    ...
-  }
-});</code></pre>
-          <pre class="fragment" ng-non-bindable><code><div class="my-component">
-  <button ng-click="myComponent.doSomething()">
-    Click Me!
-  </button>
-</div></code></pre>
-        </section>
-        <section>
-          <h3>Problem solved!</h3>
-        </section>
-        <section>
-          <h4>So what about <code>bindToController</code> then?</h4>
-        </section>
-
-        <section>
-          <pre ng-non-bindable><code>app.controller('MyComponentController', () => {
-  this.myValue = 'My Component';
-});</code></pre>
-          <pre class="fragment" ng-non-bindable><code><div class="my-component">
-  {{myComponent.myValue}}
-</div></code></pre>
-<p class="fragment" style="margin-top: 2em;">What if <code>myValue</code> should be configurable from the outside world?</p>
-        </section>
-
-        <section>
-          <pre ng-non-bindable><code>app.directive('myComponent', () => {
-  return {
-    scope: {
-      myValue: '='
-    },
-    ...
-  };
-})</code></pre>
-        </section>
-
-        <section>
-          <p>Changes in scope properties are not reflected to the controller's <code>this</code>.</p>
-          <pre class="fragment" style="margin-top: 1em;" ng-non-bindable><code>app.controller('MyComponentController', ($scope) => {
-  this.myValue = 'My Component';
-
-  $scope.$watch('myValue', (newValue) => {
-    this.myValue = newValue;
-  });
-});</code></pre>
-          <p class="fragment" style="margin-top: 1em;">Super sad :(!</p>
-        </section>
-
-        <section>
-          <p><code>bindToController</code> tells our directive to bind scope properties to the directive's controller.</p>
-          <pre class="fragment" style="margin-top: 2em;" ng-non-bindable><code>app.directive('myComponent', () => {
-  return {
-    scope: {
-      myValue: '='
-    },
-    templateUrl: 'my-component.tpl.html',
-    controller: 'MyComponentController',
-    controllerAs: 'myComponent',
-    bindToController: true
-  };
-})</code></pre>
-        </section>
-
-        <section>
-          <h2>Sweet!</h2>
-        </section>
-        <section>
-          <h2>Even better in 1.4</h2>
-          <div class="fragment">
-          <p>Able to be specified as convenient object notation:</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>bindToController: {
-  text: '@text',
-  obj: '=obj',
-  expr: '&expr'
-},
-scope: {}
-</code></pre>
-</div>
-        </section>
-        <section>
-          <h2>Even better in 1.4</h2>
-          <p>Also when creating child scopes!</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>bindToController: {
-  text: '@text',
-  obj: '=obj',
-  expr: '&expr'
-},
-scope: true
-</code></pre>
-        </section>
-
-        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
-          <h2>ngModelOptions</h2>
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code><input ng-model="name">
-<p>Hello {{name}}!</p>
-</code></pre>
-<iframe class="fragment" src="http://embed.plnkr.co/dB0p5wysKLvjK7oKAA3b/preview"></iframe>
-        </section>
-
-        <section data-background="img/seriously.gif">
-          <p style="margin-top: 6em;color: #fff; font-weight: bold; font-size: 2em;">Are you serious?</p>
-        </section>
-
-        <section>
-          <p><code>ngModelOptions</code> allows us to control how <code>ngModel</code> updates are done.</p>
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name"
-  ng-model-options="{ updateOn: 'blur' }"&gt;
-<p>Hello {{name}}!</p>
-</code></pre>
-
-<iframe class="fragment" src="http://embed.plnkr.co/F5IGCe/preview"></iframe>
-        </section>
-
-        <section>
-          <p>We can always re-apply default events.</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name"
-  ng-model-options="{ updateOn: 'blur' }"&gt;
-<p>Hello {{name}}!</p>
-</code></pre>
-        </section>
-        <section>
-          <p>We can always re-apply default events.</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  ng-model="name"
-  ng-model-options="{ updateOn: 'default blur' }"&gt;
-<p>Hello {{name}}!</p>
-</code></pre>
-        </section>
-
-        <section>
-          <h2>Debouncing model updates</h2>
-        </section>
-
-        <section class="image-slide">
-          <img src="img/search.gif">
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>var debounceSearch = debounceFactory(searchTask, debounceMs);
-
-function searchTask() {
-  // do actual search
-};
-
-function performSearch(searchStr) {
-  var deferred = $q.defer();
-  debounceSearch(deferred, searchStr);
-  return deferred.promise;
-};
-</code></pre>
-        </section>
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>function debounceFactory(task, ms) {
-  var timeout, result;
-  return function () {
-      var context = this, args = arguments;
-      var later = function () {
-        timeout = null;
-        result = task.apply(context, args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, ms);
-      return result;
-  };
-};
-</code></pre>
-        </section>
-
-        <section>
-          <h3>It doesn't have to be like that!</h3>
-        </section>
-        <section>
-          <p>We can delay model updates with <code>ngModelOptions</code> and <code>debounce</code>.</p>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;input
-  type="search"
-  ng-model="searchQuery"
-  ng-model-options="{ debounce: 300 }"&gt;
-<p>Search results for: {{searchQuery}}</p>
-</code></pre>
-<iframe class="fragment" src="http://embed.plnkr.co/PNxIXX/preview"></iframe>
-        </section>
-
-        <section>
-          <p>As soon as we use <code>ngModelOptions</code>, model and view can get out of sync.</p>
-        </section>
-
-        <section>
-          <h2>Synchronizing with $rollbackViewValue</h2>
-        </section>
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>app.controller('AppController', function ($scope) {
-  $scope.name = 'thoughtram';
-
-  $scope.cancel = function (e) {
-    if (e.keyCode == 27) {
-      $scope.userForm.userName.$rollbackViewValue();
-    }
-  };
-});
-</code></pre>
-<iframe src="http://embed.plnkr.co/KQbeSE/preview" class="fragment"></iframe>
-        </section>
-
-        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
-          <h2>One-time Bindings</h2>
-        </section>
-          <section>
-          <h2>Databinding in Angular</h2>
-          <pre ng-non-bindable><code>app.controller('MyController', () => {
-  this.greeting = 'Hello ng-nl crowd!';
-});</code></pre>
-          <pre class="fragment" ng-non-bindable><code><div ng-controller="MyController as ctrl">
-  {{ctrl.greeting}}
-</div></code></pre>
-<p class="fragment" style="margin-top: 2em;">How does that even work?</p>
-        </section>
-                <section class="image-slide">
-          <h2>Runtime</h2>
-          <img class="fragment" src="img/runtime-1.svg">
-        </section>
-
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-2.svg">
-        </section>
-
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-2-2.svg">
-        </section>
-
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-3.svg">
-        </section>
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-4.svg">
-        </section>
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-5.svg">
-        </section>
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-6.svg">
-        </section>
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-7.svg">
-        </section>
-        <section class="image-slide">
-          <h2>Runtime</h2>
-          <img src="img/runtime-8.svg">
-        </section>
-
-        <section>
-          <h3>Best Practice</h3>
-          <p>Be careful with the number of bindings</p>
-        </section>
-
-        <section class="image-slide">
-          <h2>What if I told you...</h2>
-        </section>
-
-        <section class="image-slide">
-          <h2>...not everything has to be bound forever</h2>
-          <img src="img/mindblown.gif" style="margin-top: 2em; width: 600px;">
-        </section>
-
-        <section class="image-slide">
-          <h3>We can deregister watchers for data that won't change</h3>
-        </section>
-
-
-        <section>
-          <h2>bindonce prior to 1.3</h2>
-          <div class="fragment">
-          <pre style="margin-top: 2em;" ng-non-bindable><code><div bindonce="Person" bo-title="Person.title">
-    <span bo-text="Person.firstname"></span>
-    <span bo-text="Person.lastname"></span>
-    <img bo-src="Person.picture" bo-alt="Person.title">
-    &lt;p
-      bo-class="{'fancy':Person.isNice}"
-      bo-html="Person.story">
-    &lt;/p&gt;
-</div>
-</code></pre>
-</div>
-<p class="fragment" style="margin-top: 0.5em;">Lot's of new directives</p>
-<p class="fragment" style="margin-top: 0.5em;">bindonce root directive</p>
-<p class="fragment" style="margin-top: 0.5em;">Super sad :(</p>
-        </section>
-
-
-        <section>
-          <h2>One-time bindings</h2>
-          <div class="fragment">
-          <pre style="margin-top: 2em;" ng-non-bindable><code><div title="{{::Person.title}}">
-    <span ng-bind="::Person.firstname"></span>
-    <span>{{::Person.lastname}}</span>
-    &lt;img
-      ng-src="::Person.picture"
-      alt="{{::Person.title}}"&gt;
-    &lt;p
-      ng-class="::{'fancy':Person.isNice}"
-      ng-bind-html="::Person.story"&gt;
-    &lt;/p&gt;
-</div>
-</code></pre>
-</div>
-<p class="fragment" style="margin-top: 1em;">Super happy :)</p>
-        </section>
-
-
-                <section>
-          <h2>Also with ng-repeat</h2>
-          <div class="fragment">
-          <pre style="margin-top: 2em;" ng-non-bindable><code><ul>
-  <li ng-repeat="item in ::items">{{item.name}}</li>
-</ul>
-</code></pre>
-</div>
-        </section>
-
-
-                <section>
-          <h2>Live Example</h2>
-<iframe src="http://embed.plnkr.co/p4L6xQEHKlMNAUM4jyu6/preview"></iframe>
-        </section>
-
-                <section>
-          <h2>How it works</h2>
-          <ul>
-            <li class="fragment">Expression starts with <code>::</code></li>
-            <li class="fragment">If expression evaluates not to <code>undefined</code> schedule deregistration</li>
-            <li class="fragment">Only deregister, if it still doesn't evaluate to <code>undefined</code> at deregistration time</li>
-          </ul>
-        </section>
-
-        <section data-background="img/surprise.gif">
-          <p class="fragment"style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">You were talking about a surprise right?</p>
-        </section>
-        <!-- <section> -->
-        <!--   <p>What if we <strong>don't</strong> want our model to be updated immediately?</p> -->
-        <!-- </section> -->
-
-        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
-          <h2>Futuristic Routing</h2>
-        </section>
-
-        <section data-background="img/hooray.gif">
-          <p class="fragment" style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">There's going to be a new Router in 1.4!</p>
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>var app = angular.module('app', ['ngRoute']);
-
-app.config(($routeProvider) => {
-  $routerProvider
-    .when('/', {
-      redirectTo: '/welcome'
-    })
-    .when('/welcome', {
-      templateUrl: 'welcome.html',
-      controller: 'WelcomeController'
-    });
-});
-</code></pre>
-        </section>
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app"&gt;
-  &lt;ng-view&gt;&lt;/ng-view&gt;
-&lt;/div&gt;
-</code></pre>
-        </section>
-    <section>
-      <h2>New Router works with components</h2>
-
-      <ul>
-        <li class="fragment">Component's template can have "view ports"</li>
-        <li class="fragment">Component's controller can have a router</li>
-        <li class="fragment">Component's router tells component what goes inside view ports</li>
-      </ul>
-    </section>
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app" ng-controller="AppController"&gt;
-  &lt;ng-viewport&gt;&lt;/ng-viewport&gt;
-&lt;/div&gt;
-</code></pre>
-    </section>
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>var app = angular.module('app', ['ngNewRouter']);
-
-app.controller('AppController', AppController);
-
-function AppController($router) {
-  $router.config([
-    { path: '/', component: 'welcome' }
-  ]);
+            <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
+    println!("{} years old", thing_with_age.get_age());
+}
+fn main() {
+    let person = Person;
+    let car = Car;
+    tell_age(&person);
+    tell_age(&car);
 }
 </code></pre>
+<p class="fragment">
+    dynamic dispatch
+</p>
         </section>
 
         <section>
-          <h2>Welcome Component</h2>
-          <pre style="margin-top: 2em;" ng-non-bindable><code><h1>Welcome!</h1>
-<p>Hello {{welcome.name}}!</p></code></pre>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>function WelcomeController() {
-  this.name = 'Pascal';
+            <pre ng-non-bindable><code>fn tell_age&lt;T: HasAge>(thing_with_age: T) {
+    println!("{} years old", thing_with_age.get_age());
+}
+fn main() {
+    let person = Person;
+    let car = Car;
+    tell_age(person);
+    tell_age(car);
+}
+</code></pre>
+<p class="fragment">
+    static dispatch
+</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code>fn tell_age_person(thing_with_age: Person) {
+    println!("{} years old", thing_with_age.get_age());
+}
+
+fn tell_age_car(thing_with_age: Car) {
+    println!("{} years old", thing_with_age.get_age());
+}
+fn main() {
+    let person = Person;
+    let car = Car;
+    tell_age_person(person);
+    tell_age_car(car);
+}
+</code></pre>
+<p class="fragment">
+    static dispatch: compiler generates specialized code
+</p>
+        </section>
+
+        <section>
+            <h2>enums</h2>
+            <p>
+                (called the "sum type" of algebraic data types)
+            </p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">enum Error {
+    Critical,
+    NonCritical
 }</code></pre>
-          <p class="fragment"><code>components/welcome/welcome.html</code> is loaded asynchronously.</p>
+<p class="fragment">
+    Error can either be <code class="rust">Critical</code> or <code class="rust">NonCritical</code> at any one time
+</p>
         </section>
 
         <section>
-          <h2>Configure $componentLoader</h2>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>app.config($componentLoaderProvider) => {
-  $componentLoaderProvider
-    .setCtrlNameMapping((name) => {
-      // return controller name
-    })
-    .setTemplateMapping((name) => {
-      // return template url
-    });
-});
-</code></pre>
-        </section>
-
-        <section>
-          <h3>We can have mutiple view ports too!</h3>
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>function AppController($router) {
-  $router.config([
-    {
-      path: '/',
-      components: {
-        left: 'left',
-        right: 'right'
-      }
+            <pre ng-non-bindable><code class="rust">fn log_error(error:Error) {
+    match error {
+        Error::Critical => println!("Critical error happened"),
+        Error::NonCritical => println!("Relax, it's probably fine ;)")
     }
-  ]);
-}
-</code></pre>
-        </section>
-
-        <section>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>&lt;div ng-app="app"&gt;
-  &lt;div ng-viewport="left"&gt;&lt;/div&gt;
-  &lt;div ng-viewport="right"&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-        </section>
-
-        <section>
-          <h2>Component Lifecycle Hooks</h2>
-
-          <ul>
-            <li class="fragment"><code>canActivate</code> - Runs before switching to next component</li>
-            <li class="fragment"><code>activate</code> - Fires just before navigation finishes</li>
-            <li class="fragment"><code>canDeactivate</code> - Fires before any new component is instantiated</li>
-            <li class="fragment"><code>deactivate</code> - Fires for each component that is removed as part of navigation</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Example</h2>
-          <pre style="margin-top: 2em;" ng-non-bindable><code>function MyController(user, $http) {
-  this.user = user;
-  this.$http = $http;
 }
 
-MyController.prototype.canActivate = function() {
-  return this.user.isAdmin;
-};
+fn main() {
+    log_error(Error::Critical);
+    log_error(Error::NonCritical);
+}
 </code></pre>
 
         </section>
 
         <section>
-          <h3>More to come at <strong>ng-conf</strong> :)</h3>
+            <pre ng-non-bindable><code class="rust">enum HttpError {
+    WithCode(i32),
+    WithMessage(&'static str),
+    WithCodeAndMessage(i32, &'static str)
+}</code></pre>
+<p class="fragment">
+    Variants may contain data of any other (mixed) types
+</p>
         </section>
 
         <section>
-          <img src="img/async-di.png" style="width: 800px;">
+            <pre ng-non-bindable><code class="rust">fn log_http_error(error:HttpError) {
+    match error {
+        HttpError::WithCode(code) => println!("error with id {} occured", code),
+        HttpError::WithMessage(msg) => println!("error with message {} occured", msg),
+        HttpError::WithCodeAndMessage(code, msg) => println!("error with code {} and message {} occured", code, msg)
+    }
+}
+
+fn main() {
+    log_http_error(HttpError::WithCode(404));
+    log_http_error(HttpError::WithMessage("Service unavailable"));
+}</code></pre>
+<p class="fragment">
+    which we have access to via pattern matching
+</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">enum Result&lt;T, E> {
+    Ok(T),
+    Err(E),
+}</code></pre>
+<p class="fragment">
+    Types can be generic
+</p>
         </section>
 
         <section>
-          <h3>Still not convinced that this is <strong>the best Angular yet</strong>?</h3>
+            <pre ng-non-bindable><code class="rust">match File::open("foo.txt") {
+    Ok(file) => {/*do something with file */},
+    Err(error) => {/* handle error (io::Error)*/}
+}</code></pre>
+
+            <pre ng-non-bindable><code class="rust">match json::decode(json_str)) {
+    Ok(model) => {/*do something with model*/},
+    Err(error) => {/*handle error (json::DecoderError)*/}
+}</code></pre>
+<p class="fragment">
+    In fact the std library uses generic enums a lot
+</p>
         </section>
-        <section class="deck-slide">
-          <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/angularjs-shield.png">
-          <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">Thanks!</h1>
-          <p style="text-align: center; font-size: 0.8em;"><a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a></p>
-          <div style="text-align: center;">
-            <img style="margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/christoph.png">
-          </div>
-        </section>
+
         <section>
-          <p>More at <a href="http://blog.thoughtram.io/exploring-angular-1.3/">blog.thoughtram.io/exploring-angular-1.3</a></p>
+            <h2>Macros</h2>
         </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">macro_rules! foo {
+    (x => $e:expr) => (println!("mode X: {}", $e));
+    (y => $e:expr) => (println!("mode Y: {}", $e));
+}
+
+fn main() {
+    foo!(y => 3);
+}</code></pre>
+
+<p class="fragment">
+    Macros allow us to abstract at a syntactic level
+</p>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="zoom" data-background="#80B4C4">
+          <h2>Nickel.rs</h2>
+        </section>
+
+        <section class="image-slide">
+          <img src="img/nickel_history.png" style="margin-top: 2em; width: 600px;">
+        </section>
+
+        <section>
+            <h2>Nickel in a nutshell</h2>
+            <ul>
+              <li class="fragment">Thin layer on top of pure http</li>
+              <li class="fragment">Inspired by express.js</li>
+              <li class="fragment">Extensible via custom middleware</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>hello world example</h2>
+            <pre ng-non-bindable><code class="rust">#[macro_use]
+extern crate nickel;
+
+use nickel::Nickel;
+use nickel::router::http_router::HttpRouter;
+
+fn main() {
+    let mut server = Nickel::new();
+    server.get("/hello", middleware!("hello world"));
+    server.listen("127.0.0.1:6767");
+}</code></pre>
+        </section>
+
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span class="hljs-preprocessor">#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                Tells the compiler to include macros from <code>nickel</code> crate
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span class="hljs-preprocessor"><span>extern</span> <span>crate</span> nickel;</span>
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                Tells the compiler to include the <code>nickel</code> crate
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span class="hljs-preprocessor"><span>use</span> nickel::Nickel;</span>
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                Imports nickel's facade
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span class="hljs-preprocessor"><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                Brings <code>HttpRouter</code> trait into scope
+            </p>
+        </section>
+
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span class="hljs-preprocessor"><span><span>fn</span> <span>main</span></span>() {</span>
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+<span class="hljs-preprocessor">}</span></static-code>
+            </pre>
+            <p>
+                The rust program entry function
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span><span><span>fn</span> <span>main</span></span>() {</span>
+    <span class="hljs-preprocessor"><span>let</span> <span>mut</span> server = Nickel::new();</span>
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+<span>}</span></static-code>
+            </pre>
+            <p>
+                Creates nickel's facade object
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span><span><span>fn</span> <span>main</span></span>() {</span>
+    <span><span>let</span> <span class="hljs-preprocessor">mut</span> server = Nickel::new();</span>
+    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+<span>}</span></static-code>
+            </pre>
+            <p>
+                Mutability must be explicit
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span><span><span>fn</span> <span>main</span></span>() {</span>
+    <span><span>let</span> <span>mut</span> server = Nickel::new();</span>
+    <span class="hljs-preprocessor">server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));</span>
+    server.listen(<span>"127.0.0.1:6767"</span>);
+<span>}</span></static-code>
+            </pre>
+            <p>
+                Respond with <code>hello world</code> on <code>127.0.0.1:6767/hello</code>
+            </p>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span><span>extern</span> <span>crate</span> nickel;</span>
+
+<span><span>use</span> nickel::Nickel;</span>
+<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+
+<span><span><span>fn</span> <span>main</span></span>() {</span>
+    <span><span>let</span> <span>mut</span> server = Nickel::new();</span>
+    <span>server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));</span>
+    <span class="hljs-preprocessor">server.listen(<span>"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code>
+            </pre>
+            <p>
+                Start listening
+            </p>
+        </section>
+
+        <section>
+          <h2>The <code>middleware!</code> macro is hot sauce!</h2>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">middleware!("hello world")</code></pre>
+            <p>
+                handler without body
+            </p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">middleware!({
+    let first_name = "Pascal";
+    let last_name = "Precht";
+    format!("{} {}", first_name, last_name)
+})</code></pre>
+            <p>
+                handler with body
+            </p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">middleware! { |req|
+    format!("Hello: {}", req.param("username"))
+}</code></pre>
+            <p>
+                Accessing <code>request</code> params
+            </p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">middleware! { |req, mut res|
+    res.content_type(MediaType::Json);
+    r#"{"foo":"bar"}"#
+}</code></pre>
+            <p>
+                Setting the content type
+            </p>
+        </section>
+
+        <section>
+            <h2>The <code>middleware!</code> macro</h2>
+            <ul>
+              <li class="fragment">Improves ergonomics where the language lacks</li>
+              <li class="fragment">Improves stability on a syntactic level</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>HTTP verbs</h2>
+        </section>
+
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.<span class="hljs-preprocessor">get</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.<span class="hljs-preprocessor">post</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.<span class="hljs-preprocessor">put</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.<span class="hljs-preprocessor">delete</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+        </section>
+
+        <section>
+            <h2>Flexible Routing</h2>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span class="hljs-preprocessor">"/bar"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                matches <code>/bar</code>
+            </p>
+        </section>
+
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span class="hljs-preprocessor">"/a/*/d"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                matches <code>/a/b/d</code>
+            </p>
+            <p>
+                BUT NOT <code>/a/b/c/d</code>
+            </p>
+        </section>
+
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    server.get(<span class="hljs-preprocessor">"/a/**/d"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                matches <code>/a/b/d</code>
+            </p>
+            <p>
+                AND ALSO <code>/a/b/c/d</code>
+            </p>
+        </section>
+
+        <section>
+            <h2>Middleware</h2>
+        </section>
+
+        <section>
+            <pre>
+            <static-code class="rust hljs"><span>#[macro_use]</span>
+<span>extern</span> <span>crate</span> nickel;
+
+<span>use</span> nickel::Nickel;
+<span>use</span> nickel::router::http_router::HttpRouter;
+
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> <span>mut</span> server = Nickel::new();
+    <span class="hljs-preprocessor">server.utilize(StaticFilesHandler::new("examples/assets/"));</span>
+    server.get("/hello"</span>, middleware!(<span>"hello world"</span>));
+    server.listen(<span>"127.0.0.1:6767"</span>);
+}</static-code>
+            </pre>
+            <p>
+                Serves files from <code>example/assets</code>
+            </p>
+        </section>
+
+        <section>
+            <h2>What else</h2>
+            <ul>
+              <li class="fragment">Custom Middleware</li>
+              <li class="fragment">JSON Support</li>
+              <li class="fragment">Error Handling</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Thank you</h1>
+        </section>
+
       </div>
 
     </div>

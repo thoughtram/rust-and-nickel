@@ -43,6 +43,15 @@ img {
 .window-background .present {
   background-position-y: 0.5em; }
 
+.reveal static-code {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
 .reveal .slides > section {
   padding: 0; }
 .reveal .slide-background[data-background-hash="0/img/thoughtram-polygons.pngnullnullnullnull"] {
@@ -53,7 +62,7 @@ img {
 .reveal h2 {
   margin-bottom: 0.8em !important;
   line-height: 1em !important; }
-  .reveal h2 code {
+  .reveal h2 code, .reveal h2 static-code {
     font-weight: normal;
     background: transparent; }
 .reveal section img {
@@ -67,7 +76,7 @@ img {
   margin-top: 0.8em; }
   .reveal li:first-child {
     margin-top: 0; }
-.reveal code {
+.reveal code, .reveal static-code {
   background: #eee !important;
   padding: 0.1em;
   color: #3B7586 !important; }
@@ -75,7 +84,7 @@ img {
   box-shadow: none !important;
   font-size: 0.7em !important;
   line-height: 35px !important; }
-  .reveal pre code {
+  .reveal pre code, .reveal pre static-code {
     color: #3B7586 !important;
     padding: 0.6em !important;
     max-height: none; }
@@ -335,10 +344,10 @@ body {
   word-wrap: break-word;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
-.reveal code {
+.reveal code, .reveal static-code {
   font-family: monospace; }
 
-.reveal pre code {
+.reveal pre code, .reveal pre static-code {
   display: block;
   padding: 5px;
   overflow: auto;
