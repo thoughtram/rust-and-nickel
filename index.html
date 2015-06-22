@@ -38,7 +38,7 @@
   <body>
     <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; top: 1em; left: 1em; z-index: 2;" href="http://ngeurope.org">
       <!-- <img style="opacity: 0.5;"height="50" src="img/ng-nl-logo.png"> -->
-      <span style="color: #888; text-shadow: none; vertical-align: 90%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#webmbi</span>
+      <span style="color: #888; text-shadow: none; vertical-align: 90%; font-size: 0.8em; display: inline-block; margin-left: 0.3em;">#hannover.rs</span>
     </a>
 
     <a style="font-family: Open Sans; text-decoration: none; font-size: 1.5em;position: absolute; bottom: 1em; left: 1em; z-index: 2;" href="http://twitter.com/cburgdorf">
@@ -116,10 +116,10 @@
         <section>
             <h2>What's wrong with C/C++</h2>
             <ul>
+              <li class="fragment">Manual memory management</li>
               <li class="fragment">Segfaults</li>
               <li class="fragment">Language Flaws</li>
               <li class="fragment">Data Races</li>
-              <li class="fragment">Long Compile Times</li>
             </ul>
         </section>
 
@@ -255,21 +255,191 @@
 
 
         <section>
-            <h2>Consider this JS Code</h2>
-            <pre ng-non-bindable><code class="rust">var service = new MyService();
-var secondService = new SecondService(service);
-var thirdService = new ThirdService(service);
+            <h2>Garbage Collection</h2>
+            <pre ng-non-bindable><code class="javascript">class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+
+  calcArea () {
+    return Math.PI * this.radius * this.radius;
+  }
+}
 </code></pre>
-<p class="fragment">Now both <code class="rust">secondService</code> and <code class="rust">thirdService</code> hold a reference to <code class="rust">service</code></p>
+        </section>
+
+        <section>
+            <h2>Garbage Collection</h2>
+            <pre id="gc-code" ng-non-bindable><code class="javascript">function calcCircles(numberOfCircles, radius) {
+  var area = 0;
+  for (var i = 0; i < numberOfCircles; i++) {
+    let circle = new Circle(radius);
+    area += circle.calcArea();
+  }
+  return area;
+}
+
+calcCircles(3, 5);</code></pre>
+
+</code></pre>
+
+<pre id="heap-layout" ng-non-bindable><code class="javascript">
+            Heap Memory
+┌─────────────────────────────────┐
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+└─────────────────────────────────┘</code></pre>
+
+        </section>
+
+
+        <section>
+            <h2>Garbage Collection</h2>
+            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
+  <span>var</span> area = <span>0</span>;
+  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
+    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+    area += circle.calcArea();
+  }
+  <span>return</span> area;
+}
+
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
+
+</code></pre>
+
+<pre id="heap-layout" ng-non-bindable><code class="javascript">
+            Heap Memory
+┌─────────────────────────────────┐
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+└─────────────────────────────────┘</code></pre>
+
+        </section>
+
+        <section>
+            <h2>Garbage Collection</h2>
+            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
+  <span>var</span> area = <span>0</span>;
+  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
+    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+    area += circle.calcArea();
+  }
+  <span>return</span> area;
+}
+
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
+
+</code></pre>
+
+<pre id="heap-layout" ng-non-bindable><code class="javascript">
+            Heap Memory
+┌─────────────────────────────────┐
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+└─────────────────────────────────┘</code></pre>
+
+        </section>
+
+
+        <section>
+            <h2>Garbage Collection</h2>
+            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
+  <span>var</span> area = <span>0</span>;
+  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
+    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+    area += circle.calcArea();
+  }
+  <span>return</span> area;
+}
+
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
+
+</code></pre>
+<pre id="heap-layout" ng-non-bindable><code class="javascript">
+            Heap Memory
+┌─────────────────────────────────┐
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│      new Circle (radius)        │
+├─────────────────────────────────┤
+│                                 │
+└─────────────────────────────────┘</code></pre>
+
+        </section>
+
+        <section>
+            <h2>Garbage Collection</h2>
+            <pre id="gc-code" ng-non-bindable><code class="javascript">function calcCircles(numberOfCircles, radius) {
+  var area = 0;
+  for (var i = 0; i < numberOfCircles; i++) {
+    let circle = new Circle(radius);
+    area += circle.calcArea();
+  }
+  return area;
+}
+
+calcCircles(3, 5);</code></pre>
+<pre id="heap-layout" ng-non-bindable><code class="javascript">
+            Heap Memory
+┌─────────────────────────────────┐
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+├─────────────────────────────────┤
+│                                 │
+└─────────────────────────────────┘</code></pre>
+
+<p>
+  Eventually GC cleans it up
+</p>
+        </section>
+
+        <section>
+            <h2>Consider this JS Code</h2>
+            <pre ng-non-bindable><code class="javascript">/*
+var vehicle = {
+  name: 'Schoolbus',
+  passenger: []
+};*/
+var vehicle = getVehicle();
+var bookingService = new BookingService(vehicle);
+var repairService = new RepairService(vehicle);
+</code></pre>
+<p class="fragment">Now both <code class="rust">bookingService</code> and <code class="rust">repairService</code> hold a reference to <code class="rust">vehicle</code></p>
         </section>
 
 
         <section>
             <h2>Same thing in Rust</h2>
-            <pre ng-non-bindable><code class="rust">let service = Service::new();
-let second_service = SecondService::new(service);
-let third_service = ThirdService::new(service);</code></pre>
+            <pre ng-non-bindable><code class="rust">let vehicle = get_vehicle();
+let booking_service = BookingService::new(vehicle);
+let repair_service = RepairService::new(vehicle);</code></pre>
 <p class="fragment">Doesn't compile!</p>
+<pre class="fragment" ng-non-bindable><code  style="font-size:18px;" class="shell">error: use of moved value: `vehicle`
+RepairService::new(vehicle);
+                   ^~~~~~~
+note: `vehicle` moved here because it has type `Vehicle`, which is non-copyable
+BookingService::new(vehicle);</code></pre>
         </section>
 
 
@@ -278,40 +448,41 @@ let third_service = ThirdService::new(service);</code></pre>
           <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
         </section>
 
-
-        <section class="image-slide">
-          <h2>Cuz you've been rude!</h2>
-          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        <section>
+            <h2>Ownership</h2>
+            <ul>
+              <li>Rust moves ownership by default</li>
+              <li>The owner has the right to destroy the thing it owns</li>
+              <li>The memory is freed as soon as the owned variable goes out of it's scope</li>
+              <li>Hence <code>vehicle</code> may already be destroyed at the point when it's passed to <code>repair_service</code></li>
+              <li>Rust catches these errors at <b>compile time</b></li>
+            </ul>
         </section>
 
-
-        <section class="image-slide">
-          <h2>How that???</h2>
-          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
-        </section>
-
-
-        <section class="image-slide">
-          <h2>Let me show you.</h2>
-          <img src="img/shocked.gif" style="margin-top: 2em; width: 600px;">
+        <section data-background="img/shocked2.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">How am I supposed to write any code?!</p>
         </section>
 
         <section>
             <h2>You can lend things out</h2>
-            <pre ng-non-bindable><code class="rust">let service = Service::new();
-let second_service = SecondService::new(&service);
-let third_service = ThirdService::new(&service);</code></pre>
+            <pre ng-non-bindable><code class="rust">let vehicle = get_vehicle();
+let booking_service = BookingService::new(&vehicle);
+let third_service = ThirdService::new(&vehicle);</code></pre>
         </section>
 
         <section>
-            <h2>Ownership</h2>
+            <h2>Borrowing</h2>
             <ul>
-              <li class="fragment">There's only one owner</li>
+              <li class="fragment">A reference is passed without transfering ownership</li>
+              <li class="fragment">One can borrow immutable (<code>&</code>) or mutable (<code>&mut</code>) but not both at the same time</li>
               <li class="fragment">Borrowing is more polite than taking ownership</li>
-              <li class="fragment">Shared ownership can be achieved through special pointer with runtime checks</li>
+              <li class="fragment">Shared ownership can be achieved through special pointers with runtime checks</li>
             </ul>
         </section>
 
+        <section data-background="img/Anchorman.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">Safe memory management without GC</p>
+        </section>
 
         <section>
             <h2>Traits</h2>
@@ -363,7 +534,10 @@ fn main() {
     fn get_age (&self) -> i32 {
         0
     }
-}</code></pre>
+}
+
+impl HasAge for Car {}
+</code></pre>
         <p class="fragment">Traits can have default implementations</code></p>
         </section>
 
@@ -413,7 +587,7 @@ impl SmartPersonStorage {
         </section>
 
         <section>
-            <pre ng-non-bindable><code>struct Person;
+            <pre ng-non-bindable><code class="code--big">struct Person;
 struct Car;
 struct SmartPersonStorage;
 struct SmartCarStorage;
@@ -473,10 +647,8 @@ impl SmartStorage&lt;T: HasId> {
     <p class="fragment">Can use trait bounds</p>
         </section>
 
-
-
         <section>
-            <h2>Traits + Generics = static dispatch</h2>
+            <h2>Traits + Generics = <3</h2>
             <p class="fragment">
                 Let's refactor some earlier code!
             </p>
@@ -494,10 +666,69 @@ fn main() {
     tell_age(&car);
 }
 </code></pre>
+
 <p class="fragment">
-    dynamic dispatch
+    Can pass any reference to anything that implements the <code>HasAge</code> trait
 </p>
         </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">struct Person;
+struct Car;
+
+impl HasAge for Person {
+    fn get_age (&self) -> i32 { 31 }
+}
+
+impl HasAge for Car {
+    fn get_age (&self) -> i32 { 10 }
+}</code></pre>
+
+<p class="fragment">
+  Each struct has it's own <code>get_age</code> implementation
+</p>
+        </section>
+
+<section>
+  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>tell_age</span></span>(thing_with_age: &amp;HasAge) {
+    <span>println!</span>(<span>"{} years old"</span>, thing_with_age.<span class="hljs-preprocessor">get_age()</span>);
+}
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> person = Person;
+    <span>let</span> car = Car;
+    tell_age(&amp;person);
+    tell_age(&amp;car);
+}</static-code></pre>
+<p class="fragment">
+    Which implementation of <code>get_age()</code> to call here?
+</p>
+</section>
+
+<section>
+  <h2>It has to be looked up in a vtable at run time</h2>
+</section>
+
+<section data-background="img/surprise.gif">
+  <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">You're talking about dynamic dispatch, right?!</p>
+</section>
+
+<section>
+  <h2>Let's refactor that</h2>
+</section>
+
+<section>
+    <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
+    println!("{} years old", thing_with_age.get_age());
+}
+fn main() {
+    let person = Person;
+    let car = Car;
+    tell_age(&person);
+    tell_age(&car);
+}
+</code></pre>
+</section>
+
 
         <section>
             <pre ng-non-bindable><code>fn tell_age&lt;T: HasAge>(thing_with_age: T) {
@@ -510,14 +741,27 @@ fn main() {
     tell_age(car);
 }
 </code></pre>
-<p class="fragment">
-    static dispatch
-</p>
         </section>
+
+<section>
+  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>tell_age</span></span><span class="hljs-preprocessor">&lt;T: HasAge&gt;(thing_with_age: T)</span> {
+    <span>println!</span>(<span>"{} years old"</span>, thing_with_age.get_age());
+}
+<span><span>fn</span> <span>main</span></span>() {
+    <span>let</span> person = Person;
+    <span>let</span> car = Car;
+    tell_age(<span class="hljs-preprocessor">person</span>);
+    tell_age(<span class="hljs-preprocessor">car</span>);
+}
+</static-code></pre>
+<p class="fragment">
+  <code>tell_age</code> is now generic with a <code>HasAge</code> trait bound
+</p>
+</section>
 
 
         <section>
-            <pre ng-non-bindable><code>fn tell_age_person(thing_with_age: Person) {
+            <pre ng-non-bindable><code class="code--big">fn tell_age_person(thing_with_age: Person) {
     println!("{} years old", thing_with_age.get_age());
 }
 
@@ -532,8 +776,17 @@ fn main() {
 }
 </code></pre>
 <p class="fragment">
-    static dispatch: compiler generates specialized code
+    The compiler generates specialized code
 </p>
+        </section>
+
+        <section data-background="img/surprise.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">That's why they call it static dispatch!</p>
+        </section>
+
+
+        <section data-background="img/mind-blown.gif">
+          <p style="color: #fff; font-weight: bold; font-size: 2em; margin-top: 6em;">Zero-cost abstractions</p>
         </section>
 
         <section>
@@ -621,6 +874,33 @@ fn main() {
 }</code></pre>
 <p class="fragment">
     In fact the std library uses generic enums a lot
+</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable><code class="rust">impl&lt;T, E&gt; Result&lt;T, E&gt; {
+    fn is_err(&self) -> bool {
+        !self.is_ok()
+    }
+}</code></pre>
+
+<p class="fragment">
+    Enums can implement methods
+</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">impl &lt;T: Clone, E: Clone&gt; Clone for Result&lt;T, E&gt;  {
+  fn clone(&self) -> Result&lt;T, E&gt; {
+    match &*self {
+      &Result::Ok(ref val) => Result::Ok(val.clone()),
+      &Result::Err(ref val) => Result::Err(val.clone()),
+    }
+  }
+}</code></pre>
+
+<p class="fragment">
+    Enums can implement traits
 </p>
         </section>
 

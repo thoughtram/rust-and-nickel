@@ -16,3 +16,30 @@
 .reveal .performance-chart__lang {
   font-size: 70px;
 }
+
+.reveal pre code.code--big {
+  max-height: 500px;
+}
+
+
+pre#gc-code {
+  width: 62%;
+  display: inline-block;
+  float: left;
+}
+
+#gc-code code, #gc-code static-code {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+pre#heap-layout {
+  display: inline-block;
+  width: auto;
+}
+
+#heap-layout code {
+  font-size: 16px;
+  line-height: 14px;
+  display: inline-block;
+}
