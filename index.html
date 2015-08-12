@@ -490,67 +490,70 @@ let third_service = ThirdService::new(&vehicle);</code></pre>
 
 
         <section>
-            <pre ng-non-bindable><code class="rust">trait HasAge {
-    fn get_age (&self) -> i32;
+            <pre ng-non-bindable><code class="rust">trait Talk {
+    fn talk (&self);
 }</code></pre>
 <p class="fragment">Traits are like interfaces. They define a contract.</code></p>
         </section>
 
 
         <section>
-            <pre ng-non-bindable><code class="rust">struct Person;
-struct Car;
-struct Air;
+            <pre ng-non-bindable><code class="rust">struct Human;
+struct Dog;
+struct Tree;
 
-impl HasAge for Person {
-    fn get_age (&self) -> i32 { 31 }
+impl Talk for Human {
+    fn talk (&self) { println!("blabla"); }
 }
 
-impl HasAge for Car {
-    fn get_age (&self) -> i32 { 10 }
+impl Talk for Dog {
+    fn talk (&self)  { println!("bark bark"); }
 }</code></pre>
         </section>
 
 
         <section>
-            <pre ng-non-bindable><code class="rust">fn tell_age(thing_with_age: &HasAge) {
-    println!("{} years old", thing_with_age.get_age());
+            <pre ng-non-bindable><code class="rust">fn talk(talkable: &Talk) {
+    talkable.talk();
 }
 fn main() {
-    let person = Person;
-    let car = Car;
-    let air = Air;
-    tell_age(&person);
-    tell_age(&car);
-    //compile time error since air doesn't impl HasAge
-    //tell_age(&air);
+    let person = Human;
+    let dog = Dog;
+    let tree = Tree;
+    talk(&person);
+    talk(&dog);
+    //compile time error since Tree doesn't impl Talk
+    //talk(&tree);
 }
 </code></pre>
         </section>
 
 
         <section>
-            <pre ng-non-bindable><code class="rust">trait HasAge {
-    fn get_age (&self) -> i32 {
-        0
+            <pre ng-non-bindable><code class="rust">trait Talk {
+    fn talk (&self) {
+        println!("strange noises");
     }
 }
 
-impl HasAge for Car {}
+impl Talk for Cat {}
 </code></pre>
         <p class="fragment">Traits can have default implementations</code></p>
         </section>
 
 
         <section>
-            <pre ng-non-bindable><code class="rust">trait HasAge {
-    fn get_age (&self) -> i32;
+            <pre ng-non-bindable><code class="rust">impl Talk for i32 {
+    fn talk (&self) { println!("shifting bits around"); }
 }
 
-impl HasAge for i32 {
-    fn get_age (&self) -> i32 { 0 }
+fn talk(talkable: &Talk) {
+    talkable.talk();
 }
-</code></pre>
+
+fn main() {
+    talk(&3);
+}</code></pre>
         <p class="fragment">Traits can be written for foreign types!</code></p>
         </section>
 
@@ -656,51 +659,51 @@ impl SmartStorage&lt;T: HasId> {
 
 
         <section>
-            <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
-    println!("{} years old", thing_with_age.get_age());
+            <pre ng-non-bindable><code>fn talk(talkable: &Talk) {
+    talkable.talk();
 }
 fn main() {
-    let person = Person;
-    let car = Car;
-    tell_age(&person);
-    tell_age(&car);
-}
-</code></pre>
+    let person = Human;
+    let dog = Dog;
+    talk(&person);
+    talk(&dog);
+}</code></pre>
 
 <p class="fragment">
-    Can pass any reference to anything that implements the <code>HasAge</code> trait
+    Can pass any reference to anything that implements the <code>Talk</code> trait
 </p>
         </section>
 
         <section>
-            <pre ng-non-bindable><code class="rust">struct Person;
-struct Car;
+            <pre ng-non-bindable><code class="rust">struct Human;
+struct Dog;
 
-impl HasAge for Person {
-    fn get_age (&self) -> i32 { 31 }
+impl Talk for Human {
+    fn talk (&self) { println!("blabla"); }
 }
 
-impl HasAge for Car {
-    fn get_age (&self) -> i32 { 10 }
-}</code></pre>
+impl Talk for Dog {
+    fn talk (&self)  { println!("bark bark"); }
+}
+</code></pre>
 
 <p class="fragment">
-  Each struct has it's own <code>get_age</code> implementation
+  Each struct has it's own <code>talk</code> implementation
 </p>
         </section>
 
 <section>
-  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>tell_age</span></span>(thing_with_age: &amp;HasAge) {
-    <span>println!</span>(<span>"{} years old"</span>, thing_with_age.<span class="hljs-preprocessor">get_age()</span>);
+  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>talk</span></span>(talkable: &amp;Talk) {
+    <span>talkable</span>.<span class="hljs-preprocessor">talk()</span>;
 }
 <span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> person = Person;
-    <span>let</span> car = Car;
-    tell_age(&amp;person);
-    tell_age(&amp;car);
+    <span>let</span> person = Human;
+    <span>let</span> dog = Dog;
+    talk(&amp;person);
+    talk(&amp;dog);
 }</static-code></pre>
 <p class="fragment">
-    Which implementation of <code>get_age()</code> to call here?
+    Which implementation of <code>talk()</code> to call here?
 </p>
 </section>
 
@@ -717,62 +720,64 @@ impl HasAge for Car {
 </section>
 
 <section>
-    <pre ng-non-bindable><code>fn tell_age(thing_with_age: &HasAge) {
-    println!("{} years old", thing_with_age.get_age());
+    <pre ng-non-bindable><code>fn talk(talkable: &Talk) {
+    talkable.talk();
 }
+
 fn main() {
-    let person = Person;
-    let car = Car;
-    tell_age(&person);
-    tell_age(&car);
-}
-</code></pre>
+    let person = Human;
+    let dog = Dog;
+    talk(&person);
+    talk(&dog);
+}</code></pre>
 </section>
 
 
         <section>
-            <pre ng-non-bindable><code>fn tell_age&lt;T: HasAge>(thing_with_age: T) {
-    println!("{} years old", thing_with_age.get_age());
+            <pre ng-non-bindable><code>fn talk&lt;T: Talk>(talkable: T) {
+    talkable.talk();
 }
+
 fn main() {
     let person = Person;
-    let car = Car;
-    tell_age(person);
-    tell_age(car);
+    let dog = Dog;
+    talk(person);
+    talk(dog);
 }
 </code></pre>
         </section>
 
 <section>
-  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>tell_age</span></span><span class="hljs-preprocessor">&lt;T: HasAge&gt;(thing_with_age: T)</span> {
-    <span>println!</span>(<span>"{} years old"</span>, thing_with_age.get_age());
+  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>talk</span></span><span class="hljs-preprocessor">&lt;T: Talk&gt;(talkable: T)</span> {
+    <span>talkable.talk();
 }
+
 <span><span>fn</span> <span>main</span></span>() {
     <span>let</span> person = Person;
-    <span>let</span> car = Car;
-    tell_age(<span class="hljs-preprocessor">person</span>);
-    tell_age(<span class="hljs-preprocessor">car</span>);
+    <span>let</span> dog = Dog;
+    talk(<span class="hljs-preprocessor">person</span>);
+    talk(<span class="hljs-preprocessor">dog</span>);
 }
 </static-code></pre>
 <p class="fragment">
-  <code>tell_age</code> is now generic with a <code>HasAge</code> trait bound
+  <code>talk</code> is now generic with a <code>Talk</code> trait bound
 </p>
 </section>
 
 
         <section>
-            <pre ng-non-bindable><code class="code--big">fn tell_age_person(thing_with_age: Person) {
-    println!("{} years old", thing_with_age.get_age());
+            <pre ng-non-bindable><code class="code--big">fn talk_person(talkable: Person) {
+    talkable.talk();
 }
 
-fn tell_age_car(thing_with_age: Car) {
-    println!("{} years old", thing_with_age.get_age());
+fn talk_dog(talkable: Dog) {
+    talkable.talk();
 }
 fn main() {
     let person = Person;
-    let car = Car;
-    tell_age_person(person);
-    tell_age_car(car);
+    let dog = Dog;
+    talk_person(person);
+    talk_dog(dog);
 }
 </code></pre>
 <p class="fragment">
