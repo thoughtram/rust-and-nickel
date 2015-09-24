@@ -43,6 +43,12 @@ img {
 .window-background .present {
   background-position-y: 0.5em; }
 
+
+.reveal code.compile-error {
+  font-size: 22px;
+  border: 3px solid hsl(0, 100%, 50%);
+}
+
 .reveal static-code {
     margin: 0;
     padding: 0;
@@ -88,8 +94,23 @@ img {
     color: #3B7586 !important;
     padding: 0.6em !important;
     max-height: none; }
+  .reveal pre static-code.opaque {
+    color: hsla(194, 39%, 38%, 0.2) !important;}
+  .reveal pre static-code.opaque span.non-opaque {
+    color: hsl(194, 39%, 38%) !important;}
   .reveal pre .hljs-keyword, .reveal pre .hljs-literal, .reveal pre .keyword {
     color: #B38335 !important; }
+  .reveal pre static-code.opaque .hljs-keyword,
+  .reveal pre static-code.opaque .hljs-literal,
+  .reveal pre static-code.opaque .keyword {
+    color: hsla(37, 54%, 45%, 0.2) !important; }
+  .reveal pre static-code.opaque .hljs-preprocessor,
+  .reveal pre static-code.opaque .hljs-string {
+    color: hsla(0, 36%, 69%, 0.2) !important; }
+  .reveal pre static-code.opaque .hljs-keyword.non-opaque,
+  .reveal pre static-code.opaque .hljs-literal.non-opaque,
+  .reveal pre static-code.opaque .keyword.non-opaque {
+     color: hsl(37, 54%, 45%) !important; }
   .reveal pre .tag, .reveal pre .literal, .reveal pre .apache .tag, .reveal pre .hljs-tag {
     color: #3B7586 !important; }
   .reveal pre .variable, .reveal pre .hljs-variable {
@@ -98,6 +119,19 @@ img {
     color: #B66666 !important; }
   .reveal pre .hljs-title, .reveal pre .title {
     color: #3B7586 !important; }
+  .reveal pre static-code.opaque .hljs-title, .reveal pre static-code.opaque .title {
+    color: hsla(194, 39%, 38%, 0.2) !important; }
+  .reveal pre static-code.opaque .hljs-comment {
+    color: hsla(120, 14%, 56%, 0.2);}
+  .reveal pre static-code.opaque span.hljs-comment.non-opaque {
+    color: hsl(120, 14%, 56%) !important; }
+  .reveal pre static-code.opaque span.hljs-preprocessor.non-opaque,
+  .reveal pre static-code.opaque span.hljs-string.non-opaque {
+    color: hsl(0, 36%, 69%) !important; }
+  .reveal pre static-code.opaque .hljs-number, static-code.opaque .hljs-date {
+    color: hsla(183, 45%, 69%, 0.2); }
+  .reveal pre static-code.opaque .non-opaque {
+      color: hsl(194, 39%, 38%) !important;}
 .reveal blockquote {
   background: none;
   box-shadow: none;

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Rust & Nickel</title>
+    <title>Rust - Rethinking Systems Programming</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -55,7 +55,7 @@
         <!-- </section> -->
         <section class="deck-slide">
           <img style="text-align: center; display: block; margin: 0 auto; width: 320px;" src="img/rust-logo-blk.svg">
-          <h1 style="text-align: center; font-size: 2.4em; margin-top: 0.1em;">Rust & Nickel</h1>
+          <h1 style="text-align: center; font-size: 1.6em; margin-top: 0.1em;">Rethinking Systems Programming</h1>
           <p style="text-align: center; font-size: 0.8em;">By <a href="http://twitter.com/cburgdorf">Christoph Burgdorf</a></p>
           <div style="text-align: center;">
             <img style="margin: 0; margin-right: 0.6em; border-radius: 50%; width: 100px;" src="img/christoph.png">
@@ -104,7 +104,7 @@
         </section>
 
         <section>
-            <h2>The offer of C/C++</h2>
+            <h2>C/C++'s Offer</h2>
             <ul>
               <li class="fragment">Direct Memory Access</li>
               <li class="fragment">Zero Cost Abstractions</li>
@@ -169,6 +169,7 @@
           <p style="font-size: 0.5em; margin-top: 100px; text-align: right; font-style: italic;">* In theory. Rust is a work-in-progress and may do anything it likes up to and including eating your laundry.</p>
         </section>
 
+
         <section style="display: block;">
             <div class="performance-chart visible">
             <span class="performance-chart__axe-title" style="position: absolute;top: 221px;left: -212px;transform: rotate(-90deg);">Control / Performance</span>
@@ -186,7 +187,7 @@
                 top: 90px;">C++</span>
 
 
-            <span class="performance-chart__lang" style="
+            <span class="performance-chart__lang fragment" style="
                 position: absolute;
                 right: 20px;
                 top: 10px;">Rust</span>
@@ -298,21 +299,19 @@ calcCircles(3, 5);</code></pre>
 
         </section>
 
-
         <section>
             <h2>Garbage Collection</h2>
-            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
-  <span>var</span> area = <span>0</span>;
-  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
-    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+<pre id="gc-code"><static-code class="javascript hljs opaque"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircles</span><span class="hljs-params">(numberOfCircles, radius)</span> </span>{
+  <span class="hljs-keyword">var</span> area = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCircles; i++) {
+    <span class="hljs-keyword">let</span> circle = <span class="hljs-keyword non-opaque">new</span> <span class="non-opaque">Circle(radius)</span>;
     area += circle.calcArea();
   }
-  <span>return</span> area;
+  <span class="hljs-keyword">return</span> area;
 }
 
-calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
-
-</code></pre>
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code>
+    </pre>
 
 <pre id="heap-layout" ng-non-bindable><code class="javascript">
             Heap Memory
@@ -330,18 +329,17 @@ calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</spa
 
         <section>
             <h2>Garbage Collection</h2>
-            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
-  <span>var</span> area = <span>0</span>;
-  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
-    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+<pre id="gc-code"><static-code class="javascript hljs opaque"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircles</span><span class="hljs-params">(numberOfCircles, radius)</span> </span>{
+  <span class="hljs-keyword">var</span> area = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCircles; i++) {
+    <span class="hljs-keyword">let</span> circle = <span class="hljs-keyword non-opaque">new</span> <span class="non-opaque">Circle(radius)</span>;
     area += circle.calcArea();
   }
-  <span>return</span> area;
+  <span class="hljs-keyword">return</span> area;
 }
 
-calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
-
-</code></pre>
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code>
+    </pre>
 
 <pre id="heap-layout" ng-non-bindable><code class="javascript">
             Heap Memory
@@ -360,18 +358,17 @@ calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</spa
 
         <section>
             <h2>Garbage Collection</h2>
-            <pre id="gc-code" ng-non-bindable=""><static-code class="javascript hljs"><span><span>function</span> <span>calcCircles</span><span>(numberOfCircles, radius)</span> </span>{
-  <span>var</span> area = <span>0</span>;
-  <span>for</span> (<span>var</span> i = <span>0</span>; i &lt; numberOfCircles; i++) {
-    <span>let</span> circle = <span class="hljs-preprocessor">new Circle(radius)</span>;
+<pre id="gc-code"><static-code class="javascript hljs opaque"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircles</span><span class="hljs-params">(numberOfCircles, radius)</span> </span>{
+  <span class="hljs-keyword">var</span> area = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCircles; i++) {
+    <span class="hljs-keyword">let</span> circle = <span class="hljs-keyword non-opaque">new</span> <span class="non-opaque">Circle(radius)</span>;
     area += circle.calcArea();
   }
-  <span>return</span> area;
+  <span class="hljs-keyword">return</span> area;
 }
 
-calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code></pre>
-
-</code></pre>
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);</static-code>
+    </pre>
 <pre id="heap-layout" ng-non-bindable><code class="javascript">
             Heap Memory
 ┌─────────────────────────────────┐
@@ -388,16 +385,19 @@ calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</spa
 
         <section>
             <h2>Garbage Collection</h2>
-            <pre id="gc-code" ng-non-bindable><code class="javascript">function calcCircles(numberOfCircles, radius) {
-  var area = 0;
-  for (var i = 0; i < numberOfCircles; i++) {
-    let circle = new Circle(radius);
+<pre id="gc-code"><static-code class="javascript hljs opaque"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calcCircles</span><span class="hljs-params">(numberOfCircles, radius)</span> </span>{
+  <span class="hljs-keyword">var</span> area = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCircles; i++) {
+    <span class="hljs-keyword">let</span> circle = <span class="hljs-keyword">new</span> <span>Circle(radius)</span>;
     area += circle.calcArea();
   }
-  return area;
+  <span class="hljs-keyword">return</span> area;
 }
 
-calcCircles(3, 5);</code></pre>
+calcCircles(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
+<span class="hljs-comment non-opaque">//some time later</span>
+</static-code>
+    </pre>
 <pre id="heap-layout" ng-non-bindable><code class="javascript">
             Heap Memory
 ┌─────────────────────────────────┐
@@ -436,11 +436,11 @@ var repairService = new RepairService(vehicle);
 let booking_service = BookingService::new(vehicle);
 let repair_service = RepairService::new(vehicle);</code></pre>
 <p class="fragment">Doesn't compile!</p>
-<pre class="fragment" ng-non-bindable><code  style="font-size:18px;" class="shell">error: use of moved value: `vehicle`
+<pre class="fragment" ng-non-bindable><code class="shell compile-error">error: use of moved value: `vehicle`
 RepairService::new(vehicle);
                    ^~~~~~~
-note: `vehicle` moved here because it has type `Vehicle`, which is non-copyable
-BookingService::new(vehicle);</code></pre>
+note: `vehicle` moved here because it has type `Vehicle`,
+which is non-copyable BookingService::new(vehicle);</code></pre>
         </section>
 
 
@@ -486,6 +486,79 @@ let third_service = ThirdService::new(&vehicle);</code></pre>
         </section>
 
         <section>
+            <h2>Structs</h2>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">struct Dog;</code></pre>
+<p class="fragment">Structs are like lightweight classes</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">struct Dog {
+    name: String,
+    age: i32
+}</code></pre>
+<p class="fragment">They may have fields</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">let yeti = Dog {
+    name: "Yeti".to_owned(),
+    age: 15
+}</code></pre>
+<p class="fragment">They can be instanziated</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">let yeti = Dog {
+    name: "Yeti".to_owned()
+}</code></pre>
+<pre class="fragment" ng-non-bindable><code class="shell compile-error">error: missing field: `age` [E0063]
+let yeti = Dog {
+    name: "Yeti".to_owned()
+};</code></pre>
+<p class="fragment">But not partially </p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">struct Dog {
+    name: String,
+    age: Option&lt;i32&gt;
+}</code></pre>
+<p class="fragment">Rust has the <code>Option</code> enum for that</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable><code class="rust">let yeti = Dog {
+    name: "Yeti".to_owned(),
+    age: None
+};</code></pre>
+<p class="fragment">Which makes it explicit (No NullPointerExceptions!)</p>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable><code class="rust">struct Dog {
+    name: String
+}
+
+impl Dog {
+  fn greet (&self) {
+    println!("My name is {}", self.name);
+  }
+}
+
+let banjo = Dog { name: "Banjo".to_owned() };
+banjo.greet();
+</code></pre>
+<p class="fragment">They can have methods</p>
+        </section>
+
+        <section>
             <h2>Traits</h2>
         </section>
 
@@ -494,7 +567,7 @@ let third_service = ThirdService::new(&vehicle);</code></pre>
             <pre ng-non-bindable><code class="rust">trait Talk {
     fn talk (&self);
 }</code></pre>
-<p class="fragment">Traits are like interfaces. They define a contract.</code></p>
+<p class="fragment">Traits are like interfaces. They define a contract.</p>
         </section>
 
 
@@ -649,6 +722,8 @@ impl SmartStorage&lt;T: HasId> {
 }
 </code></pre>
     <p class="fragment">Can use trait bounds</p>
+    <p>&nbsp;<!-- poor mans bouncing slide prevention--></p>
+
         </section>
 
         <section>
@@ -693,16 +768,36 @@ impl Talk for Dog {
 </p>
         </section>
 
+
 <section>
-  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>talk</span></span>(talkable: &amp;Talk) {
-    <span>talkable</span>.<span class="hljs-preprocessor">talk()</span>;
+<pre ng-non-bindable><code>fn talk(talkable: &Talk) {
+    talkable.talk();
 }
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> person = Human;
-    <span>let</span> dog = Dog;
+fn main() {
+    let person = Human;
+    let dog = Dog;
+    talk(&person);
+    talk(&dog);
+}</code></pre>
+
+
+<p>&nbsp;<!-- poor mans bouncing slide prevention--></p>
+
+</section>
+
+<section>
+
+<pre ng-non-bindable=""><static-code class="hljs rust opaque"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">talk</span></span>(talkable: &amp;Talk) {
+    talkable.<span class="non-opaque">talk()</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> person = Human;
+    <span class="hljs-keyword">let</span> dog = Dog;
     talk(&amp;person);
     talk(&amp;dog);
 }</static-code></pre>
+
+
 <p class="fragment">
     Which implementation of <code>talk()</code> to call here?
 </p>
@@ -731,6 +826,8 @@ fn main() {
     talk(&person);
     talk(&dog);
 }</code></pre>
+<p>&nbsp;<!-- poor mans bouncing slide prevention--></p>
+
 </section>
 
 
@@ -746,23 +843,26 @@ fn main() {
     talk(dog);
 }
 </code></pre>
+<p>&nbsp;<!-- poor mans bouncing slide prevention--></p>
+
         </section>
 
 <section>
-  <pre ng-non-bindable=""><static-code class="hljs rust"><span><span>fn</span> <span>talk</span></span><span class="hljs-preprocessor">&lt;T: Talk&gt;(talkable: T)</span> {
-    <span>talkable.talk();
+  <pre ng-non-bindable>
+<static-code class="hljs rust opaque"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">talk</span></span><span class="non-opaque">&lt;T: Talk&gt;(talkable: T)</span> {
+    talkable.talk();
 }
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> person = Person;
-    <span>let</span> dog = Dog;
-    talk(<span class="hljs-preprocessor">person</span>);
-    talk(<span class="hljs-preprocessor">dog</span>);
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> person = Person;
+    <span class="hljs-keyword">let</span> dog = Dog;
+    talk(<span class="non-opaque">person</span>);
+    talk(<span class="non-opaque">dog</span>);
 }
 </static-code></pre>
 <p class="fragment">
-  <code>talk</code> is now generic with a <code>Talk</code> trait bound
-</p>
+    <code>talk</code> is now generic with a <code>Talk</code> trait bound
+  </p>
 </section>
 
 
@@ -964,177 +1064,150 @@ fn main() {
         </section>
 
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span class="hljs-preprocessor">#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor non-opaque">#[macro_use]</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword">use</span> nickel::Nickel;
+<span class="hljs-keyword">use</span> nickel::router::http_router::HttpRouter;
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                Tells the compiler to include macros from <code>nickel</code> crate
-            </p>
-        </section>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> server = Nickel::new();
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+}</static-code></pre>
+  <p>
+      Tells the compiler to include macros from <code>nickel</code> crate
+  </p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span class="hljs-preprocessor"><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span class="non-opaque"><span class="hljs-keyword non-opaque">extern</span> <span class="hljs-keyword non-opaque">crate</span> nickel;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword">use</span> nickel::Nickel;
+<span class="hljs-keyword">use</span> nickel::router::http_router::HttpRouter;
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                Tells the compiler to include the <code>nickel</code> crate
-            </p>
-        </section>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> server = Nickel::new();
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+}</static-code></pre>
+  <p>
+      Tells the compiler to include the <code>nickel</code> crate
+  </p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span class="hljs-preprocessor"><span>use</span> nickel::Nickel;</span>
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword non-opaque">use</span><span class="non-opaque"> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span> nickel::router::http_router::HttpRouter;
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                Imports nickel's facade
-            </p>
-        </section>
-
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
-
-<span><span>use</span> nickel::Nickel;</span>
-<span class="hljs-preprocessor"><span>use</span> nickel::router::http_router::HttpRouter;</span>
-
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                Brings <code>HttpRouter</code> trait into scope
-            </p>
-        </section>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> server = Nickel::new();
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+}</static-code></pre>
+<p>
+    Imports nickel's facade
+</p>
+</section>
 
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span><span>use</span> nickel::Nickel;</span>
-<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword non-opaque">use</span><span class="non-opaque"> nickel::router::http_router::HttpRouter;</span>
 
-<span class="hljs-preprocessor"><span><span>fn</span> <span>main</span></span>() {</span>
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-<span class="hljs-preprocessor">}</span></static-code>
-            </pre>
-            <p>
-                The rust program entry function
-            </p>
-        </section>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> server = Nickel::new();
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+}</static-code></pre>
+<p>
+    Brings <code>HttpRouter</code> trait into scope
+</p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span><span>use</span> nickel::Nickel;</span>
-<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span><span>fn</span> <span>main</span></span>() {</span>
-    <span class="hljs-preprocessor"><span>let</span> <span>mut</span> server = Nickel::new();</span>
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-<span>}</span></static-code>
-            </pre>
-            <p>
-                Creates nickel's facade object
-            </p>
-        </section>
+<span class="hljs-function non-opaque"><span class="hljs-keyword non-opaque">fn</span> <span class="hljs-title non-opaque">main</span></span><span class="non-opaque">() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> server = Nickel::new();
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+<span class="non-opaque">}</span></static-code></pre>
+<p>
+    The rust program entry function
+</p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span><span>use</span> nickel::Nickel;</span>
-<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span><span>fn</span> <span>main</span></span>() {</span>
-    <span><span>let</span> <span class="hljs-preprocessor">mut</span> server = Nickel::new();</span>
-    server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-<span>}</span></static-code>
-            </pre>
-            <p>
-                Mutability must be explicit
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword non-opaque">let</span> <span class="hljs-keyword non-opaque">mut</span><span class="non-opaque"> server = Nickel::new();</span>
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+<span>}</span></static-code></pre>
+<p>
+    Creates nickel's facade object
+</p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span><span>use</span> nickel::Nickel;</span>
-<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span><span>fn</span> <span>main</span></span>() {</span>
-    <span><span>let</span> <span>mut</span> server = Nickel::new();</span>
-    <span class="hljs-preprocessor">server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));</span>
-    server.listen(<span>"127.0.0.1:6767"</span>);
-<span>}</span></static-code>
-            </pre>
-            <p>
-                Respond with <code>hello world</code> on <code>127.0.0.1:6767/hello</code>
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword non-opaque">mut</span><span> server = Nickel::new();</span>
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+<span>}</span></static-code></pre>
+<p>
+    Mutability must be explicit
+</p>
+</section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span><span>extern</span> <span>crate</span> nickel;</span>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span><span>use</span> nickel::Nickel;</span>
-<span><span>use</span> nickel::router::http_router::HttpRouter;</span>
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span><span>fn</span> <span>main</span></span>() {</span>
-    <span><span>let</span> <span>mut</span> server = Nickel::new();</span>
-    <span>server.get(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));</span>
-    <span class="hljs-preprocessor">server.listen(<span>"127.0.0.1:6767"</span>);</span>
-<span>}</span></static-code>
-            </pre>
-            <p>
-                Start listening
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    <span class="non-opaque">server.get(<span class="hljs-string non-opaque">"/hello"</span>, middleware!(<span class="hljs-string non-opaque">"hello world"</span>));</span>
+    server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);
+<span>}</span></static-code></pre>
+<p>
+    Respond with <code>hello world</code> on <code>127.0.0.1:6767/hello</code>
+</p>
+</section>
+
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
+
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
+
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.get(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span class="non-opaque">server.listen(<span class="hljs-string non-opaque">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+<p>
+    Start listening
+</p>
+</section>
 
         <section>
           <h2>The <code>middleware!</code> macro is hot sauce!</h2>
@@ -1191,170 +1264,160 @@ fn main() {
             <h2>HTTP verbs</h2>
         </section>
 
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span class="non-opaque">get</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+</section>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.<span class="hljs-preprocessor">get</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-        </section>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span class="non-opaque">post</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+</section>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.<span class="hljs-preprocessor">post</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-        </section>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span class="non-opaque">put</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+</section>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.<span class="hljs-preprocessor">put</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-        </section>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span class="non-opaque">delete</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+</section>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.<span class="hljs-preprocessor">delete</span>(<span>"/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-        </section>
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
+
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
+
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span class="non-opaque">option</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+</section>
 
         <section>
             <h2>Flexible Routing</h2>
         </section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span class="hljs-preprocessor">"/bar"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                matches <code>/bar</code>
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span>get</span>(<span class="hljs-string non-opaque">"/bar"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+<p>
+    matches <code>/bar</code>
+</p>
+</section>
 
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
-
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span class="hljs-preprocessor">"/a/*/d"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                matches <code>/a/b/d</code>
-            </p>
-            <p>
-                BUT NOT <code>/a/b/c/d</code>
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span>get</span>(<span class="hljs-string non-opaque">"/a/*/d"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+<p>
+    matches <code>/a/b/d</code>
+</p>
+<p>
+    BUT NOT <code>/a/b/c/d</code>
+</p>
+</section>
 
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    server.get(<span class="hljs-preprocessor">"/a/**/d"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                matches <code>/a/b/d</code>
-            </p>
-            <p>
-                AND ALSO <code>/a/b/c/d</code>
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    server.<span>get</span>(<span class="hljs-string non-opaque">"/a/**/d"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+<p>
+    matches <code>/a/b/d</code>
+</p>
+<p>
+    AND ALSO <code>/a/b/c/d</code>
+</p>
+</section>
 
         <section>
             <h2>Middleware</h2>
         </section>
 
-        <section>
-            <pre>
-            <static-code class="rust hljs"><span>#[macro_use]</span>
-<span>extern</span> <span>crate</span> nickel;
+<section><pre><static-code class="rust hljs opaque"><span class="hljs-preprocessor">#[macro_use]</span>
+<span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> nickel;</span>
 
-<span>use</span> nickel::Nickel;
-<span>use</span> nickel::router::http_router::HttpRouter;
+<span class="hljs-keyword">use</span><span> nickel::Nickel;</span>
+<span class="hljs-keyword">use</span><span> nickel::router::http_router::HttpRouter;</span>
 
-<span><span>fn</span> <span>main</span></span>() {
-    <span>let</span> <span>mut</span> server = Nickel::new();
-    <span class="hljs-preprocessor">server.utilize(StaticFilesHandler::new("examples/assets/"));</span>
-    server.get("/hello"</span>, middleware!(<span>"hello world"</span>));
-    server.listen(<span>"127.0.0.1:6767"</span>);
-}</static-code>
-            </pre>
-            <p>
-                Serves files from <code>example/assets</code>
-            </p>
-        </section>
+<span class="hljs-function "><span class="hljs-keyword ">fn</span> <span class="hljs-title ">main</span></span><span>() {</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span><span> server = Nickel::new();</span>
+    <span class="non-opaque">server.utilize(StaticFilesHandler::new(<span class="hljs-string non-opaque">"examples/assets/"</span>));</span>
+    server.<span>get</span>(<span class="hljs-string">"/hello"</span>, middleware!(<span class="hljs-string">"hello world"</span>));
+    <span>server.listen(<span class="hljs-string">"127.0.0.1:6767"</span>);</span>
+<span>}</span></static-code></pre>
+<p>
+    Serves files from <code>example/assets</code>
+</p>
+</section>
 
         <section>
             <h2>What else</h2>
             <ul>
               <li class="fragment">Custom Middleware</li>
               <li class="fragment">JSON Support</li>
+              <li class="fragment">Mounting</li>
               <li class="fragment">Error Handling</li>
+              <li class="fragment">Encrypted Cookies</li>
+              <li class="fragment">Session Support</li>
             </ul>
         </section>
 
